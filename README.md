@@ -43,7 +43,7 @@ I'm passionate about building web applications and learning new technologies. I 
 <h2 align="center">💻 Most Used Languages</h2>
 
 <p align="center">
-  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=nanditag1807&layout=compact&theme=tokyonight" alt="Top Languages" />
+  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=nanditag1807&layout=compact&theme=tokyonight" />
 </p>
 
 
