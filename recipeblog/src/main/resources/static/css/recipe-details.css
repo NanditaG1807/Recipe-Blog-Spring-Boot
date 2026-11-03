@@ -1,0 +1,1033 @@
+/* =========================================================
+   RECIPE DETAILS PAGE - COMMON
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 40px 15px;
+    background: #f7f6f1;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+
+/* =========================================================
+   MAIN RECIPE PAGE
+========================================================= */
+
+.recipe-details-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   MAIN RECIPE CARD
+========================================================= */
+
+.recipe-main-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   RECIPE TITLE
+========================================================= */
+
+.recipe-details-page h1 {
+    text-align: center;
+
+    margin: 0 0 25px;
+
+    color: #6f9d20;
+
+    font-size: 38px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   RECIPE IMAGE
+========================================================= */
+
+.recipe-details-page .recipe-image {
+    display: block;
+
+    width: 100%;
+    max-width: 700px;
+
+    height: 350px;
+
+    margin: 0 auto 30px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.recipe-details-page .tag-box {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.recipe-details-page .tag-box > span {
+    display: inline-block;
+
+    background: #eef6df;
+
+    color: #557d16;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.recipe-details-page .section-title {
+    width: 100%;
+
+    margin: 30px 0 15px;
+
+    padding: 12px 18px;
+
+    background: linear-gradient(
+            135deg,
+            #6f9d20,
+            #557d16
+    );
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.recipe-details-page .description {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 18px 20px;
+
+    background: #fafaf7;
+
+    border-left: 4px solid #6f9d20;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   INGREDIENTS CONTAINER
+========================================================= */
+
+.recipe-details-page .ingredients-list {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 18px;
+
+    background: #f7faef;
+
+    border: 1px solid #e1ebd0;
+
+    border-radius: 15px;
+}
+
+
+/* =========================================================
+   INGREDIENT ITEM
+========================================================= */
+
+.recipe-details-page .ingredient-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    min-width: 0;
+
+    margin-bottom: 12px;
+
+    padding: 14px;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition: all 0.3s ease;
+}
+
+.recipe-details-page .ingredient-item:last-child {
+    margin-bottom: 0;
+}
+
+.recipe-details-page .ingredient-item:hover {
+    transform: translateX(3px);
+
+    background: #fbfdf7;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   INGREDIENT NUMBER
+========================================================= */
+
+.recipe-details-page .ingredient-number {
+    flex: 0 0 32px;
+
+    width: 32px;
+    height: 32px;
+
+    margin-right: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #6f9d20;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INGREDIENT TEXT
+========================================================= */
+
+.recipe-details-page .ingredient-text {
+    flex: 1 1 auto;
+
+    width: auto;
+
+    min-width: 0;
+
+    display: block;
+
+    white-space: normal;
+
+    word-break: normal;
+
+    overflow-wrap: break-word;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   COOKING STEPS CONTAINER
+========================================================= */
+
+.recipe-details-page .recipe-details-container {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 18px;
+
+    background: #f7faef;
+
+    border: 1px solid #e1ebd0;
+
+    border-radius: 15px;
+}
+
+
+/* =========================================================
+   EACH COOKING STEP
+========================================================= */
+
+.recipe-details-page .step-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    min-width: 0;
+
+    margin-bottom: 12px;
+
+    padding: 14px;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition: all 0.3s ease;
+}
+
+.recipe-details-page .step-item:last-child {
+    margin-bottom: 0;
+}
+
+.recipe-details-page .step-item:hover {
+    transform: translateX(3px);
+
+    background: #fbfdf7;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   STEP NUMBER
+========================================================= */
+
+.recipe-details-page .step-number {
+    flex: 0 0 32px;
+
+    width: 32px;
+    height: 32px;
+
+    margin-right: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #6f9d20;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STEP TEXT
+========================================================= */
+
+.recipe-details-page .step-text {
+    flex: 1 1 auto;
+
+    width: auto;
+
+    min-width: 0;
+
+    display: block;
+
+    white-space: normal;
+
+    word-break: normal;
+
+    overflow-wrap: break-word;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.recipe-details-page .back-button {
+    display: block;
+
+    width: fit-content;
+
+    margin: 35px auto 0;
+
+    padding: 11px 25px;
+
+    background: #6f9d20;
+
+    color: white;
+
+    border-radius: 25px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.recipe-details-page .back-button:hover {
+    background: #3f6212;
+
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(63, 98, 18, 0.25);
+}
+
+
+/* =========================================================
+   WRITE A REVIEW
+========================================================= */
+
+.write-review {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 40px auto 0;
+
+    padding: 35px 40px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   WRITE REVIEW TITLE
+========================================================= */
+
+.write-review h2 {
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    color: #6f9d20;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   REVIEW FORM
+========================================================= */
+
+.write-review form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.write-review form > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   REVIEW LABEL
+========================================================= */
+
+.write-review label {
+    color: #557d16;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INPUT / TEXTAREA / SELECT
+========================================================= */
+
+.write-review input,
+.write-review textarea,
+.write-review select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d9e5c5;
+
+    border-radius: 10px;
+
+    background: #fafcf7;
+
+    color: #333;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+    outline: none;
+
+    transition: all 0.3s ease;
+}
+
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.write-review input:focus,
+.write-review textarea:focus,
+.write-review select:focus {
+    border-color: #6f9d20;
+
+    background: #ffffff;
+
+    box-shadow: 0 0 0 3px rgba(111, 157, 32, 0.12);
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.write-review textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.write-review button {
+    width: fit-content;
+
+    margin: 5px auto 0;
+
+    padding: 12px 32px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #6f9d20;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.write-review button:hover {
+    background: #3f6212;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(63, 98, 18, 0.25);
+}
+
+
+/* =========================================================
+   CUSTOMER REVIEWS
+========================================================= */
+
+.all-reviews {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 40px auto;
+
+    padding: 35px 40px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   CUSTOMER REVIEWS TITLE
+========================================================= */
+
+.all-reviews h2 {
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    color: #6f9d20;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   REVIEW LIST
+========================================================= */
+
+.review-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   REVIEW CARD
+========================================================= */
+
+.review-card {
+    padding: 20px;
+
+    background: #f7faef;
+
+    border: 1px solid #e1ebd0;
+
+    border-left: 5px solid #6f9d20;
+
+    border-radius: 12px;
+
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateX(4px);
+
+    background: #fbfdf7;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================================
+   REVIEW USER NAME
+========================================================= */
+
+.review-card h4 {
+    margin: 0 0 8px;
+
+    color: #3f6212;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   REVIEW STARS
+========================================================= */
+
+.review-stars {
+    margin-bottom: 10px;
+
+    color: #f5b400;
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   REVIEW COMMENT
+========================================================= */
+
+.review-card p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   TABLET RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    /* Recipe card */
+
+    .recipe-main-card {
+        padding: 25px 20px;
+
+        border-radius: 16px;
+    }
+
+    /* Recipe title */
+
+    .recipe-details-page h1 {
+        font-size: 28px;
+    }
+
+    /* Recipe image */
+
+    .recipe-details-page .recipe-image {
+        height: 250px;
+    }
+
+    /* Cooking text */
+
+    .recipe-details-page .step-text {
+        font-size: 15px;
+    }
+
+    /* Review sections */
+
+    .write-review,
+    .all-reviews {
+        padding: 28px 22px;
+
+        border-radius: 16px;
+    }
+
+    /* Review headings */
+
+    .write-review h2,
+    .all-reviews h2 {
+        font-size: 24px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 15px 8px;
+    }
+
+
+    /* -----------------------------------------------------
+       RECIPE CARD
+    ----------------------------------------------------- */
+
+    .recipe-main-card {
+        padding: 20px 15px;
+
+        border-radius: 14px;
+    }
+
+
+    /* -----------------------------------------------------
+       RECIPE TITLE
+    ----------------------------------------------------- */
+
+    .recipe-details-page h1 {
+        font-size: 24px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* -----------------------------------------------------
+       RECIPE IMAGE
+    ----------------------------------------------------- */
+
+    .recipe-details-page .recipe-image {
+        height: 210px;
+
+        border-radius: 12px;
+    }
+
+
+    /* -----------------------------------------------------
+       TAGS
+    ----------------------------------------------------- */
+
+    .recipe-details-page .tag-box {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .recipe-details-page .tag-box > span {
+        width: 80%;
+
+        text-align: center;
+    }
+
+
+    /* -----------------------------------------------------
+       SECTION TITLE
+    ----------------------------------------------------- */
+
+    .recipe-details-page .section-title {
+        font-size: 16px;
+
+        padding: 11px 14px;
+    }
+
+
+    /* -----------------------------------------------------
+       DESCRIPTION
+    ----------------------------------------------------- */
+
+    .recipe-details-page .description {
+        padding: 15px;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    /* -----------------------------------------------------
+       INGREDIENTS
+    ----------------------------------------------------- */
+
+    .recipe-details-page .ingredients-list {
+        padding: 12px;
+    }
+
+    .recipe-details-page .ingredient-item {
+        padding: 12px;
+    }
+
+    .recipe-details-page .ingredient-number {
+        flex: 0 0 30px;
+
+        width: 30px;
+        height: 30px;
+
+        margin-right: 10px;
+    }
+
+    .recipe-details-page .ingredient-text {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* -----------------------------------------------------
+       COOKING STEPS
+    ----------------------------------------------------- */
+
+    .recipe-details-page .recipe-details-container {
+        padding: 12px;
+    }
+
+    .recipe-details-page .step-item {
+        padding: 12px;
+    }
+
+    .recipe-details-page .step-number {
+        flex: 0 0 30px;
+
+        width: 30px;
+        height: 30px;
+
+        margin-right: 10px;
+    }
+
+    .recipe-details-page .step-text {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* -----------------------------------------------------
+       BACK BUTTON
+    ----------------------------------------------------- */
+
+    .recipe-details-page .back-button {
+        width: 100%;
+
+        text-align: center;
+
+        padding: 12px 20px;
+
+        margin-top: 25px;
+    }
+
+
+    /* -----------------------------------------------------
+       WRITE REVIEW
+    ----------------------------------------------------- */
+
+    .write-review {
+        margin-top: 25px;
+
+        padding: 22px 15px;
+
+        border-radius: 14px;
+    }
+
+
+    /* Review title */
+
+    .write-review h2 {
+        font-size: 22px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* Review input */
+
+    .write-review input,
+    .write-review textarea,
+    .write-review select {
+        padding: 12px;
+
+        font-size: 14px;
+    }
+
+
+    /* Review textarea */
+
+    .write-review textarea {
+        min-height: 110px;
+    }
+
+
+    /* Submit button */
+
+    .write-review button {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       ALL REVIEWS
+    ----------------------------------------------------- */
+
+    .all-reviews {
+        margin-top: 25px;
+
+        padding: 22px 15px;
+
+        border-radius: 14px;
+    }
+
+
+    /* Reviews title */
+
+    .all-reviews h2 {
+        font-size: 22px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* Review card */
+
+    .review-card {
+        padding: 16px;
+    }
+
+
+    /* User name */
+
+    .review-card h4 {
+        font-size: 17px;
+    }
+
+
+    /* Stars */
+
+    .review-stars {
+        font-size: 18px;
+    }
+
+
+    /* Comment */
+
+    .review-card p {
+        font-size: 14px;
+    }
+}

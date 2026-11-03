@@ -1,0 +1,2246 @@
+/* =========================================
+   1. GOOGLE FONT IMPORT
+   Playfair Display font Google वरून load करतो.
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+/* =========================================
+   2. UNIVERSAL SELECTOR
+   सर्व HTML elements चे margin, padding reset करतो.
+   box-sizing मुळे width आणि height मोजणे सोपे होते.
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   3. ROOT VARIABLES
+   संपूर्ण website मध्ये वापरला जाणारा मुख्य हिरवा रंग.
+========================================= */
+:root {
+    --main-color: #85b72c;
+    --nav-green: #6f9d20;
+    --nav-green-dark: #3f6212;
+    --nav-text: #1d2228;
+    --nav-border: #e5e7eb;
+
+    font-family: "Playfair Display", serif;
+}
+body {
+    background-color: white;
+}
+/* =========================================
+   4. CONTAINER
+   Content ची maximum width 1100px ठेवतो
+   आणि content मध्यभागी align करतो.
+========================================= */
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+/* =========================================
+   5. FLEX UTILITY
+   Elements एका row मध्ये ठेवतो आणि vertically center करतो.
+========================================= */
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================
+   6. LINKS AND LISTS
+   Links वरील underline काढतो.
+   List मधील bullets काढतो.
+========================================= */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* =========================================
+   7. BODY
+   Website चा background पांढरा ठेवतो.
+   Font आणि smooth scrolling सेट करतो.
+========================================= */
+body {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    font-family: "Playfair Display", serif;
+    transition: 0.4s ease;
+    scroll-behavior: smooth;
+}
+
+
+/* =========================================
+   8. HEADER
+   Website च्या header ला full width देतो.
+   z-index मुळे इतर elements च्या वर ठेवण्यास मदत होते.
+========================================= */
+header {
+    width: 100%;
+    height: auto;
+    z-index: 9999;
+}
+
+
+/* =========================================
+   9. TOP NAVIGATION
+   Header मधील वरच्या navigation bar ची height 50px.
+   Sticky position scroll करताना वापरता येते.
+========================================= */
+.topnav {
+    width: 100%;
+    height: 50px;
+    color: white;
+    position: sticky;
+}
+
+.topnav .container {
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================
+   10. SOCIAL MEDIA ICONS
+   Icons मध्ये अंतर ठेवतो.
+   Hover केल्यावर हिरवा रंग दाखवतो.
+========================================= */
+.navicons {
+    gap: 30px;
+}
+
+.navicons i {
+    font-size: 15px;
+    color: white;
+}
+
+.navicons a:hover i {
+    color: var(--main-color);
+}
+
+
+/* =========================================
+   11. SEARCH / SERVICE BUTTON
+   Button चा font, रंग आणि hover effect सेट करतो.
+   Hover केल्यावर arrow 90 degrees rotate होतो.
+========================================= */
+.srbtn {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.srbtn i {
+    margin-left: 5px;
+    font-size: 13px;
+    transition: 0.2s ease;
+    color: white;
+}
+
+.srbtn:hover {
+    color: var(--main-color);
+}
+
+.srbtn:hover i {
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   12. MAIN NAVBAR
+   वर fixed navbar ठेवतो.
+   पांढरा background आणि shadow देतो.
+   z-index मुळे navbar इतर content च्या वर राहतो.
+========================================= */
+
+
+.mainnav .container {
+    width: 100%;
+    max-width: 100%;
+    min-height: 85px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.navbar-menu .navlist {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    margin: 0;
+    width: auto;
+}
+
+.navbar-menu .recipe-search-form {
+    width: auto;
+    min-width: 0;
+    max-width: 300px;
+    flex: 1 1 200px;
+    margin: 0;
+}
+
+.navbar-menu .recipe-search-form input[type="search"] {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+/* =====================================
+   RECIPE BLOG - RESPONSIVE NAVBAR
+===================================== */
+
+
+
+/* Header */
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Fixed Navbar */
+
+
+/* Main Layout */
+.navbar-container {
+    width: 100%;
+    max-width: 1600px;
+    min-height: 85px;
+    margin: 0 auto;
+    padding: 10px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+/* Logo */
+.mainnav .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+.mainnav .logo img {
+    display: block;
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.mainnav .logo h1 {
+    margin: 0;
+    color: var(--nav-text);
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.mainnav .logo:hover h1 {
+    color: var(--nav-green);
+}
+
+/* Desktop Navigation */
+.navbar-navigation {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.mainnav .navlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+
+    width: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+}
+
+.mainnav .navlist li {
+    margin: 0;
+    padding: 0;
+}
+
+.mainnav .navlist li a {
+    display: inline-block;
+    padding: 8px 0;
+    color: var(--nav-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mainnav .navlist li a:hover,
+.mainnav .navlist li a:focus-visible {
+    color: var(--nav-green);
+}
+
+/* Search Form */
+.mainnav .navbar-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    width: auto;
+    max-width: 280px;
+    min-width: 0;
+    flex: 1 1 210px;
+
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.mainnav .navbar-search input[type="search"] {
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+    padding: 8px 10px;
+
+    color: #333;
+    background: #f9fafb;
+    border: 1px solid var(--nav-border);
+    border-radius: 7px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.mainnav .navbar-search input[type="search"]:focus {
+    border-color: var(--nav-green);
+    box-shadow: 0 0 0 3px rgba(133, 183, 44, 0.13);
+}
+
+.mainnav .navbar-search button {
+    height: 38px;
+    padding: 0 12px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    background: var(--nav-green);
+    border: none;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.mainnav .navbar-search button:hover {
+    background: var(--nav-green-dark);
+}
+
+/* Profile, Wishlist and PDF */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.mainnav .user-profile {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.mainnav .profile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.mainnav .profile-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--nav-green);
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+}
+
+.mainnav .profile-circle:hover {
+    background: var(--nav-green-dark);
+}
+
+.mainnav .wishlist-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    margin: 0;
+    padding: 8px 0;
+    color: var(--nav-text);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.mainnav .wishlist-link span {
+    color: #e53935;
+    font-size: 18px;
+}
+
+.mainnav .wishlist-link:hover {
+    color: var(--nav-green);
+}
+
+.mainnav .pdf-download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 9px 10px;
+    border-radius: 7px;
+    background: #e7f5eb;
+    color: var(--nav-green);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mainnav .pdf-download-link i {
+    font-size: 16px;
+}
+
+.mainnav .pdf-download-link:hover {
+    background: var(--nav-green);
+    color: #ffffff;
+}
+
+/* Hamburger: hidden on desktop */
+.mainnav .mobile-menu-toggle {
+    display: none;
+}
+
+/* =====================================
+   TABLET AND MOBILE
+===================================== */
+
+@media screen and (max-width: 1100px) {
+    .navbar-container {
+        gap: 12px;
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .mainnav .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 18px;
+    }
+
+    .mainnav .navlist {
+        gap: 10px;
+    }
+
+    .mainnav .navlist li a {
+        font-size: 12px;
+    }
+
+    .navbar-actions {
+        gap: 8px;
+    }
+
+    .mainnav .pdf-download-link {
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mainnav {
+        min-height: 0;
+    }
+
+    .navbar-container {
+        min-height: 0;
+        padding: 10px 14px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    /* Logo on the first row */
+    .mainnav .logo {
+        order: 1;
+        margin: 0;
+        gap: 7px;
+    }
+
+    .mainnav .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 17px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Hamburger on the first row */
+    .mainnav .mobile-menu-toggle {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 40px;
+        height: 36px;
+        padding: 7px;
+
+        margin-left: auto;
+        flex-shrink: 0;
+
+        background: #ffffff;
+        border: 1px solid #dddddd;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .mainnav .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--nav-green);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Hamburger changes to X */
+    .mainnav .mobile-menu-toggle.active span:first-child {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .mainnav .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mainnav .mobile-menu-toggle.active span:last-child {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Navigation hidden until clicked */
+    .mainnav .navbar-navigation {
+        display: block;
+        width: 100%;
+    }
+
+    .mainnav .navbar-navigation #mobile-navlist {
+        display: none;
+
+        align-items: stretch;
+        width: 100%;
+        margin: 0;
+        padding: 6px 0;
+        gap: 0;
+        background: #fff;
+    }
+    .mainnav .navbar-navigation #mobile-navlist.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainnav #mobile-navlist li {
+        display: block;
+        width: 100%;
+    }
+
+    .mainnav #mobile-navlist li a {
+        display: block;
+        width: 100%;
+        padding: 12px 10px;
+        color: #1d2228;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .mainnav #mobile-navlist li a:hover,
+    .mainnav #mobile-navlist li a:focus-visible {
+        color: #3f6212;
+        background: #f1f7e8;
+    }
+
+    /* Search on its own row */
+    .mainnav .navbar-search {
+        order: 4;
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .mainnav .navbar-search input[type="search"] {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        font-size: 14px;
+    }
+
+    .mainnav .navbar-search button {
+        padding: 0 16px;
+    }
+
+    /* User actions on their own row */
+    .mainnav .navbar-actions {
+        order: 5;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        width: 100%;
+        min-width: 0;
+        padding-top: 2px;
+    }
+
+    .mainnav .wishlist-link {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .mainnav .pdf-download-link {
+        font-size: 12px;
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 380px) {
+    .navbar-container {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .mainnav .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 15px;
+    }
+
+    .mainnav .mobile-menu-toggle {
+        width: 36px;
+        height: 34px;
+    }
+
+    .mainnav .navbar-search button {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .mainnav .navbar-actions {
+        gap: 9px;
+    }
+}
+
+/* =========================================
+   13. WEBSITE LOGO
+   Logo image ची width सेट करतो.
+   Website title uppercase आणि bold ठेवतो.
+   Hover केल्यावर title हिरवा होतो.
+========================================= */
+
+/* =====================================
+   MOBILE NAVBAR FIX
+   Contact Us page आणि इतर pages साठी
+===================================== */
+
+
+/* Fix: Mobile Hamburger 3 Lines Visible */
+
+
+/* =====================================
+   FINAL FIX: 3-LINE HAMBURGER MENU
+===================================== */
+
+@media screen and (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 40px;
+        height: 36px;
+        padding: 7px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+        display: block !important;
+        width: 24px;
+        height: 3px;
+        flex: 0 0 3px;
+        background: #6f9d20 !important;
+        border-radius: 3px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+
+/* MOBILE NAVBAR SEARCH BOX FIX */
+@media screen and (max-width: 768px) {
+
+    .mainnav .navbar-container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+    }
+
+    /* Logo - first row */
+    .mainnav .logo {
+        order: 1 !important;
+        flex: 0 1 auto !important;
+    }
+
+    /* Hamburger - first row */
+    .mainnav .mobile-menu-toggle {
+        order: 2 !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Navigation links */
+    .mainnav .navbar-navigation {
+        order: 3 !important;
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+
+    /* Search box - second row */
+    .mainnav .navbar-search,
+    .mainnav .recipe-search-form {
+        order: 4 !important;
+        display: flex !important;
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .mainnav .navbar-search input[type="search"],
+    .mainnav .recipe-search-form input[type="search"] {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Profile and Wishlist - next row */
+    .mainnav .navbar-actions {
+        order: 5 !important;
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* =========================================
+   14. NAVIGATION MENU
+   Menu links एका row मध्ये ठेवतो.
+   Links मधील gap आणि font सेट करतो.
+   Hover केल्यावर link हिरवा होतो.
+========================================= */
+/* Navbar menu */
+
+
+.navlist li a:hover {
+    color: var(--main-color);
+}
+
+/* =========================================
+   15. MOBILE HAMBURGER MENU
+   सुरुवातीला hamburger menu लपवतो.
+   JavaScript किंवा media query वापरून दाखवता येतो.
+========================================= */
+
+
+/* =========================================
+   16. SEARCH INPUT
+   Search input ची width, height आणि alignment.
+   Input मधील text चे styling.
+   Search icon चा hover effect.
+========================================= */
+.mainnav .recipe-search-form {
+    width: 100px;
+    min-width: 350px;
+    flex: 0 1 180px;
+    margin: 0;
+    padding: 4px;
+    gap: 4px;
+    box-shadow: none;
+    border-radius: 8px;
+}
+
+.mainnav .recipe-search-form input[type="search"] {
+    min-width: 0;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.mainnav .recipe-search-form button {
+    padding: 8px 10px;
+    font-size: 13px;
+}
+
+/* =========================================
+   17. RECIPE PDF DOWNLOAD BUTTON
+   Navbar मधील PDF download link चे design.
+   Hover केल्यावर हिरवा background आणि white text.
+========================================= */
+.pdf-nav {
+    list-style: none;
+}
+
+.pdf-download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: #e7f5eb;
+    color: #6F9D20;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.pdf-download-link i {
+    font-size: 18px;
+}
+
+.pdf-download-link:hover {
+    background: #6F9D20;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   18. CAROUSEL / IMAGE SLIDER
+   Slider च्या प्रत्येक slide ची height 60vh.
+   Images crop/position करण्यासाठी background properties.
+   Slider button चा हिरवा background.
+========================================= */
+.carousel-item {
+    height: 60vh;
+}
+
+.carousel-inner .carousel-item img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.carousel-item .btn {
+    background-color: #46bc67;
+    color: #fff;
+    border: none;
+    box-shadow: 4px 4px 8px #000;
+}
+
+
+/* =========================================
+   19. HEADER SLIDER CARDS
+   Slider ची width, height, alignment आणि overflow.
+   Category image पूर्ण card width मध्ये दाखवतो.
+========================================= */
+.headerslider {
+    position: relative;
+    width: 85%;
+    height: 100%;
+    margin: -40px auto 20px auto;
+    z-index: 99;
+    overflow: hidden;
+    max-width: 950px;
+}
+
+.headerslider .card-body {
+    padding: 15px;
+}
+
+.headerslider .category-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+
+}
+
+
+/* =========================================
+   MOBILE HAMBURGER FIX
+   Home page प्रमाणे सर्व pages वर 3 lines दाखवतो.
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    .site-header .navbar-container .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+
+        width: 40px !important;
+        height: 36px !important;
+        min-width: 40px !important;
+        padding: 7px !important;
+        margin-left: auto !important;
+
+        flex-shrink: 0 !important;
+        position: relative !important;
+        z-index: 10001 !important;
+
+        background: #ffffff !important;
+        border: 1px solid #dddddd !important;
+        border-radius: 6px !important;
+
+        cursor: pointer !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .site-header .navbar-container .mobile-menu-toggle span {
+        display: block !important;
+
+        width: 24px !important;
+        height: 3px !important;
+        min-height: 3px !important;
+        flex: 0 0 3px !important;
+
+        background: #6f9d20 !important;
+        border: none !important;
+        border-radius: 3px !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Menu उघडल्यावर X icon */
+    .site-header .mobile-menu-toggle.active span:first-child {
+        transform: translateY(9px) rotate(45deg) !important;
+    }
+
+    .site-header .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0 !important;
+    }
+
+    .site-header .mobile-menu-toggle.active span:last-child {
+        transform: translateY(-9px) rotate(-45deg) !important;
+    }
+}
+
+/* Desktop वर hamburger लपवतो */
+@media screen and (min-width: 769px) {
+    .site-header .navbar-container .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Slider title आणि button यांच्यात spacing */
+.slidertitle {
+    color: white;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+.slidertitle .btn {
+    background-color: #6F9D20;
+    color: #fff;
+    border: none;
+    box-shadow: 4px 4px 8px #000;
+}
+
+/* Slider button hover effect */
+.slidertitle .btn:hover {
+    background-color: #5c841a;
+    color: #fff;
+}
+
+
+/* =========================================
+   20. SMALL CARD BUTTONS
+   Card मधील buttons चा हिरवा रंग.
+   Hover केल्यावर darker green आणि shadow.
+========================================= */
+.card-group .btn {
+    background-color: #6F9D20;
+    color: #fff;
+}
+
+.card-group .btn:hover {
+    background-color: #3F6212;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   21. FOOTER
+   Footer ला dark gradient background.
+   Footer मधील text आणि links पांढरे.
+========================================= */
+.footer {
+    background: linear-gradient(145deg, #1a1c23, #242730);
+    color: #ffffff;
+}
+
+/* Footer किंवा इतर element ला top padding */
+.pt-5 {
+    padding-top: 3rem !important;
+}
+
+
+/* Footer element चे default display */
+footer {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+/* Footer links चे styling */
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    color: var(--main-color);
+}
+
+
+/* =========================================
+   22. ABOUT US SECTION
+   Section मधील container चा font Arial करतो.
+========================================= */
+section .container {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   23. RECIPE PAGE PAGINATION
+   Pagination ला डावीकडून 500px margin.
+========================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+/* =========================================
+   24. CATEGORIES PAGE CARDS
+   Card hover केल्यावर थोडा मोठा होतो.
+   Images ची height 200px आणि crop control.
+========================================= */
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-group .person {
+    height: 15px;
+}
+
+
+/* =========================================
+   25. ROUNDED IMAGE / ELEMENT
+   Element चे corners पूर्ण गोल करण्यासाठी.
+========================================= */
+.rounded-circle {
+    border-radius: 90%;
+}
+
+
+/* =========================================
+   26. CARD HEADING HOVER
+   Container मधील h3 वर mouse नेल्यास हिरवा रंग.
+========================================= */
+.container h3:hover {
+    color: var(--main-color);
+}
+
+
+/* =========================================
+   27. RECIPE PAGE LIST
+   Ingredients किंवा recipe categories ची list.
+   Main list item ला background, border आणि arrow.
+========================================= */
+.list-group {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 300px;
+    font-family: 'Arial', sans-serif;
+}
+
+.list-box {
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Main list hover effect */
+.list-box:hover {
+    background: #e2f0ff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Main list च्या उजवीकडे down arrow */
+.list-box::after {
+    content: '\25BC';
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* List active झाल्यावर arrow rotate होतो */
+.list-box.active::after {
+    transform: rotate(-180deg);
+}
+
+/* Sub-list सुरुवातीला लपवलेली असते */
+.sub-list-box {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Sub-list मधील प्रत्येक item चे design */
+.sub-item {
+    background: #ffffff;
+    padding: 10px 15px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Sub-item hover effect */
+.sub-item:hover {
+    background: #a54b4b;
+    transform: translateX(5px);
+}
+
+/* Selected sub-item highlight */
+.sub-item.selected {
+    background: #c26767;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+/* =========================================
+   28. FORM SUBMIT BUTTON
+   Submit button चा background, width आणि height.
+========================================= */
+form .submit {
+    background-color: #6F9D20;
+    width: 600px;
+    height: 40px;
+}
+
+
+/* =========================================
+   29. LIKE BUTTON
+   Hover केल्यावर हिरवा रंग.
+========================================= */
+.like-btn:hover {
+    color: var(--main-color);
+}
+
+
+/* =========================================
+   FEATURED RECIPES SECTION
+========================================= */
+
+.featured-section {
+    max-width: 1200px;
+    margin: 40px auto 50px;
+    padding: 0 15px;
+}
+
+/* Heading */
+.featured-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.featured-chef-image {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.featured-heading h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* Cards Grid */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* Individual Featured Card */
+.featured-card {
+    width: 100%;
+    height: 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    background: #fff;
+    border: 1px solid #888888;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+
+/* Same Image Height for Every Card */
+.featured-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    min-height: 180px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.featured-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Wishlist Position */
+.featured-wishlist-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+/* Card Content */
+.featured-content {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    overflow: hidden;
+}
+
+.featured-title {
+    min-height: 20px;
+    margin: 0 0 6px;
+    color: #6f9d20;
+    font-size: 13px;
+    text-align: center;
+}
+
+.featured-name {
+    min-height: 48px;
+    max-height: 48px;
+    overflow: hidden;
+    margin: 0 0 8px;
+    font-size: 19px;
+    line-height: 1.25;
+    text-align: center;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Stars */
+.featured-stars {
+    min-height: 22px;
+    margin-bottom: 8px;
+    color: #ffc107;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Same Description Space */
+.featured-description {
+    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
+    overflow: hidden;
+    margin: 0 0 12px;
+
+    color: #666;
+    font-size: 13px;
+    line-height: 20px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Recipe Information */
+.featured-info {
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    font-size: 12px;
+}
+
+.featured-servings,
+.featured-cook-time,
+.featured-likes {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.featured-person-icon {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.featured-heart {
+    color: #85b72c;
+}
+
+/* Read More Button */
+.featured-button-wrapper {
+    height: 42px;
+    min-height: 42px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.featured-read-more {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: #6f9d20;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.featured-read-more:hover {
+    background-color: #5c841a;
+    color: #fff;
+}
+
+/* Empty Message */
+.featured-empty {
+    grid-column: 1 / -1;
+    padding: 25px;
+    text-align: center;
+}
+
+/* Responsive Layout */
+@media (max-width: 1100px) {
+    .featured-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .featured-card {
+        height: 520px;
+    }
+
+    .featured-heading h3 {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-card {
+        height: 520px;
+        max-width: 340px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* सर्व Featured Cards */
+.featured-recipes .featured-recipe-card {
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+}
+
+/* सर्व Featured Cards च्या images */
+.featured-recipes .featured-recipe-card .card-img-top {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+/* फक्त पहिल्या Featured Card साठी */
+.featured-recipes .featured-recipe-card:first-child {
+    border: 2px solid #85b72c;
+}
+/* =========================================
+   31. FEATURED CARDS - MOBILE RESPONSIVE
+   768px किंवा त्यापेक्षा कमी screen वर
+   cards एकाखाली एक दाखवतो.
+========================================= */
+
+
+/* =========================================
+   32. USER PROFILE
+   Navbar मधील profile icon आणि गोल background.
+========================================= */
+.user-profile {
+    display: flex;
+    align-items: center;
+
+
+}
+
+.profile-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #6F9D20;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Profile hover effect */
+.profile-circle:hover {
+    background-color: #3F6212;
+}
+
+
+/* =========================================
+   33. SEARCH BAR
+   Input आणि search button एका row मध्ये ठेवतो.
+   Input focus केल्यावर border हिरवा होतो.
+========================================= */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.search-input {
+    width: 200px;
+    height: 38px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    padding: 0 15px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    border-color: #46bc67;
+}
+
+/* Search button */
+.search-btn {
+    height: 38px;
+    width: 45px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    background-color: #6F9D20;
+    color: white;
+    cursor: pointer;
+}
+
+/* Search button hover */
+.search-btn:hover {
+    background-color: #3F6212;
+}
+
+
+/* =========================================
+   34. SMALL RECIPE CARDS GRID
+   Recipe cards साठी grid layout.
+   Desktop वर एका row मध्ये 5 cards.
+========================================= */
+.recipe-container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================
+   35. RECIPE SMALL CARD
+   Card चा background, border, shadow आणि layout.
+========================================= */
+.recipe-small-card {
+    background: #fff;
+    border: 1px solid #888888;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card hover केल्यावर वर सरकतो आणि shadow येतो */
+.recipe-small-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   36. RECIPE CARD IMAGE
+   Image ची height 150px.
+   object-fit: contain मुळे संपूर्ण image दिसते.
+========================================= */
+.recipe-card-image {
+    width: 100%;
+    height: 180px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    margin:0;
+}
+
+/* Image उपलब्ध नसल्यास */
+.no-image {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f1f1f1;
+    color: #777;
+}
+
+
+/* =========================================
+   37. RECIPE CARD HEADER
+   Recipe category किंवा card header साठी styling.
+========================================= */
+.recipe-card-header {
+    background: #f5f5f5;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #3f6212;
+}
+
+
+/* =========================================
+   38. RECIPE CARD BODY
+   Card मधील title, description आणि button.
+   Flex मुळे button खाली ठेवता येतो.
+========================================= */
+.recipe-card-body {
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Recipe title */
+.recipe-card-body h5 {
+    color: #222;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Description जास्तीत जास्त 3 lines मध्ये दाखवतो */
+.recipe-card-body p {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   39. VIEW RECIPE BUTTON
+   Recipe उघडण्यासाठी button चे design.
+   Hover वर background आणि shadow बदलतो.
+========================================= */
+.recipe-view-btn {
+    margin-top: auto;
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #6f9d20;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
+}
+
+.recipe-view-btn:hover {
+    background-color: #5c841a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   40. REVIEW FORM SECTION
+   Review section ला हलका cream background.
+   Form container ला white background आणि shadow.
+========================================= */
+.review-section {
+    padding: 50px 20px;
+    background: #fffaf3;
+}
+
+.review-container {
+    max-width: 700px;
+    margin: auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* Review heading */
+.review-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.review-heading h2 {
+    color: #3d5a1e;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.review-heading p {
+    color: #888;
+}
+
+
+/* =========================================
+   41. REVIEW FORM INPUTS
+   प्रत्येक input field मध्ये अंतर.
+   Label, border, padding आणि focus effect.
+========================================= */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3d5a1e;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Input किंवा textarea focus झाल्यावर हिरवा border */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #85b72c;
+    box-shadow: 0 0 0 3px rgba(133,183,44,0.12);
+}
+
+
+/* =========================================
+   42. STAR RATING
+   Review साठी 5-star rating layout.
+   Hover किंवा selected star पिवळा होतो.
+========================================= */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+/* Radio input लपवतो; labels म्हणजे stars */
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 32px;
+    color: #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover आणि selected stars चा रंग */
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffc107;
+}
+
+
+/* =========================================
+   43. SUBMIT REVIEW BUTTON
+   Full width हिरवा button.
+   Hover केल्यावर darker green.
+========================================= */
+.submit-review-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    background: #6f9d20;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submit-review-btn:hover {
+    background: #3f6212;
+}
+
+
+/* =========================================
+   44. WISHLIST NAVIGATION
+   Navbar मधील wishlist link.
+========================================= */
+.wishlist-nav {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.wishlist-link {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.wishlist-link:hover {
+    color: #85b72c;
+}
+
+
+/* Website title आणि recipe text चा हिरवा रंग */
+.web-title {
+    color: #85b72c;
+}
+
+.recipe-text {
+    color: #85b72c;
+}
+
+
+/* =========================================
+   45. SAVE RECIPE BUTTON
+   Recipe wishlist मध्ये save करण्यासाठी button.
+   Saved आणि hover states साठी styling.
+========================================= */
+.save-recipe-form {
+    display: inline-block;
+    margin: 0 0 0 auto;
+}
+
+.save-recipe-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    color: #85b72c;
+    border: 1.5px solid #85b72c;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Recipe save झाल्यावर button ची style */
+.save-recipe-btn.saved {
+    background: #fff;
+    color: #85b72c;
+    border: 1px solid #85b72c;
+}
+
+/* Save button hover */
+.save-recipe-btn:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   46. RECIPE ACTION BUTTONS
+   Wishlist मधील remove आणि view buttons एकत्र ठेवतो.
+========================================= */
+.recipe-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+}
+
+/* Remove form चे default margin काढतो */
+.remove-wishlist-form {
+    margin: 0;
+    display: inline-flex;
+}
+
+
+/* =========================================
+   47. REMOVE WISHLIST BUTTON
+   Recipe wishlist मधून काढण्यासाठी red cross button.
+========================================= */
+.remove-wishlist-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover केल्यावर लाल background आणि white cross */
+.remove-wishlist-btn:hover {
+    background: #dc3545;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Click करताना button किंचित लहान होतो */
+.remove-wishlist-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Recipe view link चे alignment */
+.view-recipe-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================
+   48. EMPTY WISHLIST
+   Wishlist मध्ये recipes नसल्यास message center मध्ये.
+========================================= */
+.no-recipes {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   49. ALL REVIEWS SECTION
+   सर्व reviews दाखवणाऱ्या section ची width आणि spacing.
+========================================= */
+.all-reviews {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.all-reviews h2 {
+    text-align: center;
+    color: #85b72c;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   50. PRIMARY BUTTON CUSTOMIZATION
+   Bootstrap primary button चा रंग हिरवा करतो.
+========================================= */
+.btn.btn-primary.bsb-btn-2xl {
+    background-color: #85b72c;
+    border-color: #85b72c;
+    color: #ffffff;
+}
+
+.btn.btn-primary.bsb-btn-2xl:hover {
+    background-color: #709c24;
+    border-color: #709c24;
+    color: #ffffff;
+}
+
+/* इतर elements साठी custom green text */
+.custom-green {
+    color: #85b72c !important;
+}
+
+
+/* =========================================
+   51. REVIEW LIST GRID
+   दोन columns मध्ये reviews दाखवतो.
+========================================= */
+.review-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================
+   52. REVIEW CARD
+   प्रत्येक review ला white background, border आणि shadow.
+========================================= */
+.review-card {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* Review user चे नाव आणि इतर माहिती */
+.review-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.review-user h4 {
+    margin: 0;
+    color: #333;
+}
+
+/* Review मधील stars पिवळे */
+.review-stars {
+    color: #ffc107;
+    font-size: 18px;
+}
+
+/* Review text */
+.review-card p {
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Reviews नसल्यास message */
+.no-reviews {
+    text-align: center;
+    color: #888;
+}
+
+
+/* =========================================
+   53. REVIEW MOBILE RESPONSIVE
+   700px किंवा कमी screen वर reviews एकाच column मध्ये.
+   Review form चे padding कमी करतो.
+========================================= */
+@media (max-width: 700px) {
+    .review-list {
+        grid-template-columns: 1fr;
+    }
+
+    .review-container {
+        padding: 25px 20px;
+    }
+}
+
+
+/* =========================================
+   54. RECIPE GRID - SCREEN WIDTH 1200px
+   1200px किंवा कमी screen वर 4 columns.
+========================================= */
+@media (max-width: 1200px) {
+    .recipe-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/* =========================================
+   55. RECIPE GRID - SCREEN WIDTH 992px
+   992px किंवा कमी screen वर 3 columns.
+========================================= */
+@media (max-width: 992px) {
+    .recipe-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* =========================================
+   56. RECIPE GRID - TABLET
+   768px किंवा कमी screen वर 2 columns.
+========================================= */
+@media (max-width: 768px) {
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================
+   57. RECIPE GRID - MOBILE
+   576px किंवा कमी screen वर 1 column.
+========================================= */
+@media (max-width: 576px) {
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Recipe Search Form */
+.recipe-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: calc(100% - 30px);
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Search Input */
+.recipe-search-form input[type="search"] {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #333;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.recipe-search-form input[type="search"]:focus {
+    border-color: var(--main-color);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(133, 183, 44, 0.15);
+}
+
+/* Search Button */
+.recipe-search-form button {
+    flex-shrink: 0;
+    padding: 13px 24px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: #6f9d20;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.recipe-search-form button:hover {
+    background: #3f6212;
+    transform: translateY(-2px);
+}
+
+.recipe-search-form button:active {
+    transform: scale(0.97);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .recipe-search-form {
+        gap: 8px;
+        padding: 8px;
+        margin: 15px auto;
+    }
+
+    .recipe-search-form input[type="search"] {
+        padding: 11px;
+        font-size: 13px;
+    }
+
+    .recipe-search-form button {
+        padding: 11px 15px;
+        font-size: 13px;
+    }
+}

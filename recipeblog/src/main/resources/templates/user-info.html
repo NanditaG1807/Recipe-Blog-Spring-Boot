@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | RecipeBlog</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <style>
+
+        body {
+            background: #f8f5ef;
+            font-family: Arial, sans-serif;
+        }
+        .profile-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .profile-circle:hover {
+            background-color: #3F6212;
+            color: white;
+            transform: scale(1.08);
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 80px auto;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .profile-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+
+            background-color: #6F9D20;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+        }
+
+        .info-row {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #6b8058;
+        }
+
+        .logout-btn {
+            margin-top: 25px;
+            width: 100%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container profile-container">
+
+    <div class="profile-card">
+
+        <!-- Profile Letter -->
+        <div class="profile-circle"
+             th:text="${#strings.substring(user.email, 0, 1).toUpperCase()}">
+        </div>
+
+
+        <h2 class="text-center mb-4">
+            My Profile
+        </h2>
+
+
+        <!-- Email -->
+        <div class="info-row">
+
+            <div class="info-label">
+                Email
+            </div>
+
+            <div th:text="${user.email}">
+                user@gmail.com
+            </div>
+
+        </div>
+
+
+        <!-- Role -->
+        <div class="info-row">
+
+            <div class="info-label">
+                Role
+            </div>
+
+            <div th:text="${user.role}">
+                USER
+            </div>
+
+        </div>
+
+
+        <!-- User ID -->
+        <div class="info-row">
+
+            <div class="info-label">
+                User ID
+            </div>
+
+            <div th:text="${user.id}">
+                1
+            </div>
+
+        </div>
+
+
+        <!-- Logout -->
+        <form th:action="@{/logout}"
+              method="post">
+
+            <button type="submit"
+                    class="btn btn-danger logout-btn">
+
+                Logout
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

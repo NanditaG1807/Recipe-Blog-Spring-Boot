@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Recipe Blog</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/login.css}">
+
+</head>
+
+<body>
+
+<div class="register-container">
+
+    <div class="register-box">
+
+        <h1>Create Account</h1>
+
+        <p class="subtitle">
+            Join our Recipe Blog
+        </p>
+        <div th:if="${error}"
+             th:text="${error}"
+             style="color: #D98891;">
+        </div>
+<br>
+        <form th:action="@{/register}"
+              th:object="${user}"
+              method="post">
+
+
+            <!-- Email -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input type="email"
+                       id="email"
+                       th:field="*{email}"
+                       placeholder="Enter your email"
+                       required>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input type="password"
+                       id="password"
+                       th:field="*{password}"
+                       placeholder="Enter your password"
+                       required>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input type="password"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       placeholder="Confirm your password"
+                       required>
+
+            </div>
+
+
+            <!-- Register -->
+            <button type="submit"
+                    class="register-btn">
+
+                Register
+
+            </button>
+
+        </form>
+
+
+        <p class="login-text">
+
+            Already have an account?
+
+            <a th:href="@{/login}">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

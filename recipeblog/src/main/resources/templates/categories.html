@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Recipe Finder | Learn with Nandita</title>
+    <link rel="stylesheet"
+          th:href="@{/css/category.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/recipe.css}">
+
+    <link href="/css/responsive.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--fav icon downlode from google-->
+    <link href="/img/favicon.png" rel="shortcut icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="categories-page">
+<!-- Error Message -->
+<div class="alert alert-danger text-center"
+     th:if="${param.error != null and param.error[0] == 'recipes'}">
+
+    ❌ This category cannot be deleted because recipes are assigned to it.
+
+</div>
+
+<div class="alert alert-warning text-center"
+     th:if="${param.error != null and param.error[0] == 'subcategories'}">
+
+    ⚠️ This category cannot be deleted because sub-categories exist.
+
+</div>
+
+<!-- Success Message -->
+<div class="alert alert-success text-center"
+     th:if="${param.deleted != null}">
+
+    ✅ Category deleted successfully.
+
+</div>
+
+<header class="site-header">
+    <div class="mainnav">
+        <div class="container navbar-container">
+
+            <!-- Website Logo -->
+            <a class="logo" th:href="@{/front-page}"
+               aria-label="Recipe Blog Home">
+                <img th:src="@{/img/OIP.jpg}"
+                     alt="Recipe Blog Logo">
+                <h1>Recipe <br> Blog</h1>
+            </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-menu-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-controls="mobile-navlist"
+                    aria-expanded="false"
+                    onclick="
+                        const menu = document.getElementById('mobile-navlist');
+                        const isOpen = menu.classList.toggle('active');
+                        this.classList.toggle('active', isOpen);
+                        this.setAttribute('aria-expanded', String(isOpen));
+                    ">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="navbar-navigation"
+                 id="site-navigation"
+                 aria-label="Main navigation">
+
+                <ul class="navlist" id="mobile-navlist">
+                    <li>
+                        <a th:href="@{/front-page}">Home</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/review}">Review</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/about-us}">About</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/contact-us}">Contact</a>
+                    </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/admin}">+Recipe</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/search}">Find Recipes</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Search Form -->
+            <form class="recipe-search-form navbar-search"
+                  method="get"
+                  th:action="@{/recipes/filter}">
+
+                <input type="search"
+                       name="search"
+                       placeholder="Search recipes..."
+                       th:value="${search}"
+                       aria-label="Search recipes by name"
+                       required>
+
+                <button type="submit">Search</button>
+            </form>
+
+            <!-- User Actions -->
+            <div class="navbar-actions">
+
+                <!-- Authenticated User Profile -->
+                <div class="user-profile"
+                     sec:authorize="isAuthenticated()">
+                    <a class="profile-link"
+                       th:href="@{/user-info}"
+                       aria-label="My Profile"
+                       title="My Profile">
+
+                        <div class="profile-circle"
+                             th:text="${#strings.substring(#authentication.name, 0, 1).toUpperCase()}">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Authenticated User Wishlist -->
+                <a class="wishlist-link"
+                   th:href="@{/wishlist}"
+                   sec:authorize="isAuthenticated()"
+                   title="My Wishlist">
+                    <span aria-hidden="true">♥</span>
+                    Wishlist
+                </a>
+
+                <!-- Recipe PDF -->
+                <a class="pdf-download-link"
+                   th:href="@{/recipes-pdf.html}"
+                   aria-label="View and Download Recipe PDF"
+                   title="View and Download Recipe PDF">
+                    <i class="fa-solid fa-file-pdf"
+                       aria-hidden="true"></i>
+                    <span>Recipe PDF</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!--Main-->
+<main>
+
+    <div class="container mt-5">
+        <br>
+        <br>
+
+
+
+        <div class="row">
+
+            <div class="col-md-3 col-sm-6 mb-4"
+                 th:each="category : ${categories}">
+
+                <div class="card h-100 category-card" style="border: 1px solid  #888888; border-radius: 5px;">
+
+                    <img th:src="@{'/img/' + ${category.image}}"
+                         th:alt="${category.name}"
+                         class="category-image">
+
+                    <div class="card-body text-center">
+
+                        <h5 class="card-title"
+                            th:text="${category.name}">
+                            Category
+                        </h5>
+
+
+
+                        <a th:href="@{/recipes/category/{name}(name=${category.name})}"
+                           class="btn btn-primary btn-sm category-btn"><i class="fa-solid fa-book-open"></i>
+                            View Recipes
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</main>
+<!--footer-->
+<footer class="footer pt-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Company Info -->
+            <div class="col-lg-4 col-md-6">
+                <h3 class="footer-title">About Company</h3>
+                <p class="mb-4">Maja Recipe Blog is a platform where food lovers can discover delicious recipes with
+                    easy-to-follow cooking instructions. Our goal is to make cooking simple, enjoyable, and accessible to everyone.</p>
+                <div class="topnav">
+
+                    <div class="container flex">
+
+                        <div class="navicons">
+
+                            <a th:href="@{/facebook}">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+
+                            <a th:href="@{/twitter}">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+
+                            <a th:href="@{/linkedin}">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+
+                            <a th:href="@{/youtube}">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="categories.html">Categoriese</a></li>
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-lg-2 col-md-6">
+                <h3 class="footer-title">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="col-lg-4 col-md-6">
+                <h3 class="footer-title">Newsletter</h3>
+                <p class="mb-4">Subscribe to our newsletter for updates, news, and exclusive offers.</p>
+                <form class="mb-4">
+                    <div class="input-group">
+                        <input class="form-control newsletter-input" placeholder="Enter your email" type="email">
+                        <button class="btn btn-subscribe text-white" type="submit">Subscribe</button>
+                    </div>
+                </form>
+                <p class="small">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom mt-5">
+        <div class="container">
+            <div class="row py-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2024 Maja Recipe Blog. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> by <a
+                            href="#">Recipe Blog</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<div th:replace="~{chatbot :: widget}"></div>
+
+<script src="/js/script.js"></script>
+
+</body>
+
+</html>

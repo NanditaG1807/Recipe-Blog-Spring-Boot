@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Add Recipe</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          th:href="@{/css/admin.css}">
+</head>
+
+<body>
+
+<div class="container mt-5 mb-5">
+
+    <h2>Add Recipe</h2>
+
+    <form enctype="multipart/form-data"
+          id="recipeForm"
+          method="post"
+          th:action="@{/admin/save}"
+          th:object="${recipe}">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control"
+                   required
+                   th:field="*{title}"
+                   type="text">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Recipe Name</label>
+            <input class="form-control"
+                   required
+                   th:field="*{name}"
+                   type="text">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control"
+                      required
+                      th:field="*{description}"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Recipe Image</label>
+            <input accept="image/*"
+                   class="form-control"
+                   name="imageFile"
+                   type="file">
+        </div>
+
+        <!-- MAIN CATEGORIES -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                Main Categories
+            </label>
+
+            <div class="border rounded p-3">
+
+                <div class="form-check mb-2"
+                     th:each="category : ${mainCategories}">
+
+                    <input class="form-check-input category-checkbox main-category"
+                           type="checkbox"
+                           name="categoryIds"
+                           th:value="${category.id}"
+                           th:id="${'main-' + category.id}"
+                           th:attr="data-category-id=${category.id}">
+
+                    <label class="form-check-label"
+                           th:for="${'main-' + category.id}"
+                           th:text="${category.name}"
+                           style="cursor: pointer;">
+                        Main Category
+                    </label>
+
+                </div>
+
+                <p class="text-muted mb-0"
+                   th:if="${#lists.isEmpty(mainCategories)}">
+                    No Main Categories available.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- SUB CATEGORIES -->
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                Sub Categories
+            </label>
+
+            <div class="border rounded p-3">
+
+                <div class="form-check mb-2"
+                     th:each="category : ${subCategories}">
+
+                    <input class="form-check-input category-checkbox sub-category"
+                           type="checkbox"
+                           name="categoryIds"
+                           th:value="${category.id}"
+                           th:id="${'sub-' + category.id}"
+                           th:attr="data-parent-ids=${#strings.listJoin(
+                       category.parentCategories.![id.toString()],
+                       ','
+                   )}">
+
+                    <label class="form-check-label"
+                           th:for="${'sub-' + category.id}"
+                           th:text="${category.name}">
+                        Sub Category
+                    </label>
+
+                </div>
+
+                <p class="text-muted mb-0"
+                   th:if="${#lists.isEmpty(subCategories)}">
+                    No Sub Categories available.
+                </p>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+<div class="mb-3">
+    <label class="form-label">Servings</label>
+    <input class="form-control"
+           min="1"
+           required
+           th:field="*{servings}"
+           type="number">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Cook Time (minutes)</label>
+    <input class="form-control"
+           min="1"
+           required
+           th:field="*{cookTime}"
+           type="number">
+</div>
+
+
+<!-- FOOD TYPE -->
+
+<!-- FOOD TYPE -->
+<div class="mb-3">
+    <label class="form-label">
+        Food Type <span class="text-danger">*</span>
+    </label>
+
+    <div class="d-flex gap-4">
+
+        <!-- VEG -->
+        <div class="form-check">
+            <input class="form-check-input"
+                   id="veg"
+                   required
+                   th:field="*{foodType}"
+                   type="radio"
+                   value="VEG">
+
+            <label class="form-check-label" for="veg">
+                🟢 Veg
+            </label>
+        </div>
+
+        <!-- NON-VEG -->
+        <div class="form-check">
+            <input class="form-check-input"
+                   id="nonVeg"
+                   required
+                   th:field="*{foodType}"
+                   type="radio"
+                   value="NON_VEG">
+
+            <label class="form-check-label" for="nonVeg">
+                🔴 Non-Veg
+            </label>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="mb-3">
+    <label class="form-label">Ingredients</label>
+    <textarea class="form-control"
+              required
+              rows="6"
+              th:field="*{ingredients}"></textarea>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Cooking Steps</label>
+    <textarea class="form-control"
+              required
+              rows="8"
+              th:field="*{cookingSteps}"></textarea>
+</div>
+
+<div class="alert alert-danger d-none"
+     id="categoryError">
+
+</div>
+
+<button class="btn btn-success"
+        type="submit">
+    Save Recipe
+</button>
+
+<a class="btn btn-secondary"
+   th:href="@{/admin}">
+    Cancel
+</a>
+
+</form>
+
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form = document.getElementById("recipeForm");
+
+        const mainCheckboxes =
+            document.querySelectorAll(".main-category");
+
+        const subCheckboxes =
+            document.querySelectorAll(".sub-category");
+
+        const categoryError =
+            document.getElementById("categoryError");
+
+        // Sub Category select केल्यावर तिची Parent Main Category select करा
+        subCheckboxes.forEach(function (subCheckbox) {
+
+            subCheckbox.addEventListener("change", function () {
+
+                if (subCheckbox.checked) {
+
+                    const parentIds =
+                        (subCheckbox.dataset.parentIds || "")
+                            .split(",")
+                            .map(id => id.trim())
+                            .filter(Boolean);
+
+                    mainCheckboxes.forEach(function (mainCheckbox) {
+
+                        const mainId = mainCheckbox.dataset.categoryId;
+
+                        if (parentIds.includes(mainId)) {
+                            mainCheckbox.checked = true;
+                        }
+
+                    });
+                }
+
+            });
+        });
+
+        // Main Category manually check/uncheck करता येईल
+        mainCheckboxes.forEach(function (mainCheckbox) {
+
+            mainCheckbox.addEventListener("change", function () {
+
+                if (!mainCheckbox.checked) {
+
+                    const mainId = mainCheckbox.dataset.categoryId;
+
+                    // हा Parent असलेल्या Sub Categories uncheck करा
+                    subCheckboxes.forEach(function (subCheckbox) {
+
+                        const parentIds =
+                            (subCheckbox.dataset.parentIds || "")
+                                .split(",")
+                                .map(id => id.trim())
+                                .filter(Boolean);
+
+                        if (parentIds.includes(mainId)) {
+                            subCheckbox.checked = false;
+                        }
+
+                    });
+                }
+
+            });
+        });
+
+        // Category validation
+        form.addEventListener("submit", function (event) {
+
+            const selectedCategories =
+                document.querySelectorAll(
+                    ".category-checkbox:checked"
+                );
+
+            if (selectedCategories.length === 0) {
+
+                event.preventDefault();
+
+                categoryError.classList.remove("d-none");
+
+                categoryError.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            } else {
+
+                categoryError.classList.add("d-none");
+
+            }
+        });
+
+    });
+</script>
+
+
+
+</body>
+</html>

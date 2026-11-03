@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1.0"
+          name="viewport">
+
+    <title th:text="${recipe.name}">Recipe Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          th:href="@{/css/recipe-details.css}">
+
+</head>
+<style>
+
+    /* Recipe Sharing Section */
+    .recipe-share {
+        max-width: 650px;
+        margin: 35px auto;
+        padding: 28px 20px;
+        text-align: center;
+        background: #fffaf4;
+        border: 1px solid #f1dfce;
+        border-radius: 18px;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        box-sizing: border-box;
+    }
+
+    .recipe-share h2 {
+        color: #713f2b;
+        font-size: 26px;
+        margin: 0 0 10px;
+    }
+
+    .recipe-share p {
+        color: #6b625c;
+        margin-bottom: 22px;
+    }
+
+    .share-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .share-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 12px 18px;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+    }
+
+    .whatsapp {
+        background: #25D366;
+    }
+
+    .facebook {
+        background: #1877F2;
+    }
+
+    .pinterest {
+        background: #BD081C;
+    }
+
+    .copy-link {
+        background: #6548a3;
+    }
+
+    .share-btn span {
+        margin-right: 5px;
+    }
+
+    #share-message {
+        margin: 16px 0 0;
+        font-size: 14px;
+        color: #287443;
+        overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 480px) {
+        .recipe-share {
+            margin: 24px 12px;
+            padding: 22px 14px;
+        }
+
+        .recipe-share h2 {
+            font-size: 22px;
+        }
+
+        .share-btn {
+            flex: 1 1 40%;
+            padding: 12px 8px;
+        }
+    }
+
+</style>
+<body>
+
+<div class="recipe-details-page">
+
+    <div class="recipe-main-card">
+
+
+        <!-- Recipe Name -->
+
+        <h1 th:text="${recipe.name}">
+            Recipe Name
+        </h1>
+
+
+        <!-- Recipe Image -->
+
+        <img class="recipe-image"
+             th:alt="${recipe.name}"
+             th:if="${recipe.image != null and !#strings.isEmpty(recipe.image)}"
+             th:src="@{'/img/' + ${recipe.image}}">
+
+
+        <!-- Tags -->
+
+        <div class="tag-box">
+
+           <span th:each="category : ${recipe.categories}"
+                 th:text="${category.name}">
+        Dinner
+    </span>
+
+
+            <span>
+                <span th:text="${recipe.cookTime}">
+                    20
+                </span>
+                minutes
+            </span>
+
+            <span>
+                <span th:text="${recipe.servings}">
+                    2
+                </span>
+                Servings
+            </span>
+
+        </div>
+
+
+        <!-- Description -->
+
+        <div class="section-title">
+            DESCRIPTION
+        </div>
+
+        <p class="description"
+           th:text="${recipe.description}">
+            Recipe description
+        </p>
+
+
+        <!-- Ingredients -->
+
+        <div class="section-title">
+            INGREDIENTS
+        </div>
+
+        <div class="ingredients-list">
+
+            <div class="ingredient-item"
+                 th:each="ingredient, stat : ${#strings.arraySplit(recipe.ingredients, ',')}">
+
+        <span class="ingredient-number"
+              th:text="${stat.count}">
+            1
+        </span>
+
+                <span class="ingredient-text"
+                      th:text="${#strings.trim(ingredient)}">
+            Ingredient
+        </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Cooking Steps -->
+
+
+        <div class="section-title">
+            COOKING STEPS
+        </div>
+
+        <div class="recipe-details-container">
+
+            <div class="step-item"
+                 th:each="step, stat : ${#strings.arraySplit(recipe.cookingSteps, '\\.')} "
+                 th:if="${!#strings.isEmpty(#strings.trim(step))}">
+
+        <span class="step-number"
+              th:text="${stat.count}">
+            1
+        </span>
+
+                <span class="step-text"
+                      th:text="${#strings.trim(step) + '.'}">
+            Cooking step
+        </span>
+
+            </div>
+
+        </div>
+
+        <!-- Recipe Sharing Section -->
+        <section class="recipe-share" id="recipe-share">
+            <h2>❤️ Loved this recipe?</h2>
+            <p>Share this delicious recipe with your friends!</p>
+
+            <div class="share-buttons">
+                <button class="share-btn whatsapp"
+                        onclick="shareRecipe('whatsapp')">
+                    <span>☘</span> WhatsApp
+                </button>
+
+                <button class="share-btn facebook"
+                        onclick="shareRecipe('facebook')">
+                    <span>f</span> Facebook
+                </button>
+
+                <button class="share-btn pinterest"
+                        onclick="shareRecipe('pinterest')">
+                    <span>℗</span> Pinterest
+                </button>
+
+                <button class="share-btn copy-link"
+                        onclick="copyRecipeLink()">
+                    <span>🔗</span> Copy Link
+                </button>
+            </div>
+
+            <p id="share-message" aria-live="polite"></p>
+        </section>
+        <!-- Back Button -->
+
+        <a class="back-button"
+           th:href="@{/front-page}">
+            ← Back to Recipes
+        </a>
+
+    </div>
+
+</div>
+
+
+<section class="write-review">
+
+    <h2>Write a Review</h2>
+
+    <form th:action="@{/recipe/{id}/review(id=${recipe.id})}"
+          th:object="${review}"
+          method="post">
+
+        <div>
+            <label>Your Name</label>
+
+            <input type="text"
+                   th:field="*{name}"
+                   placeholder="Your Name"
+                   required>
+        </div>
+
+        <div>
+            <label>Your Review</label>
+
+            <textarea th:field="*{comment}"
+                      placeholder="Write your review..."
+                      required>
+            </textarea>
+        </div>
+
+        <div>
+            <label>Rating</label>
+
+            <select th:field="*{rating}" required>
+
+                <option value="">
+                    Select Rating
+                </option>
+
+                <option value="1">⭐ 1</option>
+                <option value="2">⭐⭐ 2</option>
+                <option value="3">⭐⭐⭐ 3</option>
+                <option value="4">⭐⭐⭐⭐ 4</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5</option>
+
+            </select>
+        </div>
+
+        <button type="submit">
+            Submit Review
+        </button>
+
+    </form>
+
+</section>
+<section class="all-reviews">
+
+    <h2>Customer Reviews</h2>
+
+    <div class="review-list">
+
+        <div class="review-card"
+             th:each="review : ${reviews}">
+
+            <h4 th:text="${review.name}">
+                User Name
+            </h4>
+
+            <div class="review-stars">
+
+                <span th:each="i : ${#numbers.sequence(1,5)}"
+                      th:text="${i <= review.rating ? '★' : '☆'}">
+                </span>
+
+            </div>
+
+            <p th:text="${review.comment}">
+                User review
+            </p>
+
+        </div>
+
+        <div th:if="${#lists.isEmpty(reviews)}">
+
+            <p>No reviews yet. Be the first to review!</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+    function getRecipeDetails() {
+        const title =
+            document.querySelector("h1")?.textContent.trim()
+            || document.title
+            || "My Recipe";
+
+        return {
+            title: title,
+            url: window.location.href
+        };
+    }
+
+    function showShareMessage(message) {
+        const element = document.getElementById("share-message");
+
+        if (element) {
+            element.textContent = message;
+        }
+    }
+
+    function shareRecipe(platform) {
+        const recipe = getRecipeDetails();
+
+        const text = `Check out this delicious recipe: ${recipe.title}`;
+        const url = recipe.url;
+
+        const shareUrls = {
+            whatsapp:
+                "https://wa.me/?text=" +
+                encodeURIComponent(`${text} ${url}`),
+
+            facebook:
+                "https://www.facebook.com/sharer/sharer.php?u=" +
+                encodeURIComponent(url),
+
+            pinterest:
+                "https://pinterest.com/pin/create/button/?url=" +
+                encodeURIComponent(url) +
+                "&description=" +
+                encodeURIComponent(text)
+        };
+
+        const shareUrl = shareUrls[platform];
+
+        if (shareUrl) {
+            window.open(
+                shareUrl,
+                "_blank",
+                "noopener,noreferrer"
+            );
+        }
+    }
+
+    async function copyRecipeLink() {
+        const recipe = getRecipeDetails();
+
+        try {
+            await navigator.clipboard.writeText(recipe.url);
+            showShareMessage("✅ Recipe link copied successfully!");
+        } catch (error) {
+            // Fallback for browsers that block clipboard access
+            const input = document.createElement("textarea");
+            input.value = recipe.url;
+            input.style.position = "fixed";
+            input.style.opacity = "0";
+
+            document.body.appendChild(input);
+            input.select();
+
+            const copied = document.execCommand("copy");
+            input.remove();
+
+            showShareMessage(
+                copied
+                    ? "✅ Recipe link copied successfully!"
+                    : "Copy this link: " + recipe.url
+            );
+        }
+    }
+</script>
+</body>
+
+</html>

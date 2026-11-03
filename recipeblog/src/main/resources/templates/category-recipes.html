@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          th:href="@{/css/feactured.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+<div class="container recipe-container">
+
+    <!-- Page Heading -->
+
+
+        <div class="page-header">
+
+            <h1>Recipes</h1>
+
+            <p>Start your day with delicious recipes.</p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                <a class="back-btn"
+                   th:href="@{/categories}">
+                    ← Back to Home
+                </a>
+
+
+            </div>
+
+
+
+
+    </div>
+
+
+    <!-- Recipes -->
+    <div class="recipe-grid">
+
+        <!-- Recipe Card -->
+        <div class="recipe-card"
+             th:each="recipe : ${recipes}">
+
+            <!-- Image -->
+            <div class="recipe-image">
+
+                <img th:alt="${recipe.name}"
+                     th:if="${recipe.image != null and !#strings.isEmpty(recipe.image)}"
+                     th:src="@{'/img/' + ${recipe.image}}">
+
+                <img alt="Recipe Image"
+                     th:src="@{/img/default-recipe.jpg}"
+                     th:unless="${recipe.image != null and !#strings.isEmpty(recipe.image)}">
+
+                <!-- Wishlist Button -->
+
+                <form class="featured-wishlist-form save-recipe-form"
+                      method="post"
+                      th:action="@{/wishlist/add/{id}(id=${recipe.id})}">
+
+                    <button class="save-recipe-btn"
+                            th:classappend="${savedRecipeIds != null and savedRecipeIds.contains(recipe.id)} ? ' saved' : ''"
+                            type="submit"
+                            title="Save Recipe">
+
+                        <i class="fa-solid fa-check"
+                           th:if="${savedRecipeIds != null and savedRecipeIds.contains(recipe.id)}"></i>
+
+                        <i class="fa-solid fa-bookmark"
+                           th:unless="${savedRecipeIds != null and savedRecipeIds.contains(recipe.id)}"></i>
+
+                    </button>
+                </form>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+
+                        document.querySelectorAll(".save-recipe-form").forEach(function (form) {
+
+                            form.addEventListener("submit", async function (event) {
+                                event.preventDefault();
+
+                                const button = form.querySelector(".save-recipe-btn");
+                                const icon = button.querySelector("i");
+
+                                if (button.disabled) {
+                                    return;
+                                }
+
+                                button.disabled = true;
+
+                                try {
+                                    const response = await fetch(form.action, {
+                                        method: "POST",
+                                        headers: {
+                                            "X-Requested-With": "XMLHttpRequest"
+                                        }
+                                    });
+
+                                    if (!response.ok) {
+                                        throw new Error("Wishlist request failed: " + response.status);
+                                    }
+
+                                    button.classList.add("saved");
+
+                                    if (icon) {
+                                        icon.className = "fa-solid fa-check";
+                                    } else {
+                                        button.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                    }
+
+                                    alert("Added to your Wishlist!");
+
+                                } catch (error) {
+                                    console.error("Wishlist error:", error);
+                                    alert("Unable to add recipe to Wishlist. Please try again.");
+                                } finally {
+                                    button.disabled = false;
+                                }
+
+                            });
+
+                        });
+
+                    });
+                </script>
+
+            </div>
+
+
+            <!-- Card Content -->
+            <div class="recipe-content">
+
+                <!-- Title -->
+                <span class="recipe-title"
+                      th:text="${recipe.title}">
+                   Lunch
+                </span>
+
+                <!-- Recipe Name -->
+                <h2 th:text="${recipe.name}">
+                    Recipe Name
+                </h2>
+
+                <!-- Description -->
+                <p class="description"
+                   th:text="${recipe.description}">
+                    Recipe description
+                </p>
+
+
+                <!-- Recipe Information + Likes -->
+
+                <div class="recipe-info">
+
+                <span>
+                    👥
+                    <b th:text="${recipe.servings}">2</b>
+                    Servings
+                </span>
+
+                    <span>
+        ⏱
+                        <b th:text="${recipe.cookTime}">15</b>
+                        min
+                    </span>
+
+                    <!-- Like Button -->
+                    <button class="like-btn"
+                            th:data-id="${recipe.id}"
+                            type="button">
+
+                        <span class="heart">❤️</span>
+
+                        <b class="like-count"
+                           th:id="'like-count-' + ${recipe.id}"
+                           th:text="${recipe.likes != null ? recipe.likes : 0}">
+                            0
+                        </b>
+
+                        <span>Likes</span>
+                    </button>
+
+                </div>
+                <script>
+                    document.addEventListener("click", async function (event) {
+
+                        const button = event.target.closest(".like-btn");
+
+                        if (!button || button.disabled) {
+                            return;
+                        }
+
+                        const recipeId = button.dataset.id;
+                        const countElement =
+                            document.getElementById("like-count-" + recipeId);
+
+                        button.disabled = true;
+
+                        try {
+                            const response = await fetch(
+                                `/recipe/${recipeId}/like`,
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    }
+                                }
+                            );
+
+                            if (!response.ok) {
+                                throw new Error("Like request failed");
+                            }
+
+                            const data = await response.json();
+
+                            countElement.textContent = data.likes;
+
+                        } catch (error) {
+                            console.error("Like error:", error);
+                        } finally {
+                            button.disabled = false;
+                        }
+                    });
+                </script>
+
+            </div>
+
+            <!-- View Recipe Button -->
+
+            <div class="recipe-action">
+
+                <a class="view-recipe-btn"
+                   th:href="@{/recipe/{id}(id=${recipe.id})}"><i class="fa-solid fa-book-open"></i>
+                    View Recipe
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- No Recipe Message -->
+    <div class="no-recipes"
+         th:if="${#lists.isEmpty(recipes)}">
+
+        <h3>No Recipes Available</h3>
+
+        <p>
+            Admin has not added any recipes yet.
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Wishlist</title>
+
+    <link rel="stylesheet" th:href="@{/css/feactured.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .recipe-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .remove-wishlist-form {
+            margin: 0;
+            display: inline-flex;
+            justify-content: right;
+        }
+
+        .remove-wishlist-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: #ffffff;
+            color: #dc3545;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-wishlist-btn:hover {
+            background: #dc3545;
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .remove-wishlist-btn:active {
+            transform: scale(0.95);
+        }
+
+        .view-recipe-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .no-recipes {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container recipe-container">
+
+    <!-- Page Heading -->
+    <div class="page-header">
+
+        <h1>My Wishlist ❤️</h1>
+
+        <p>Your favorite recipes, saved in one place.</p>
+
+        <a class="back-btn" th:href="@{/front-page}">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+    </div>
+
+    <!-- Wishlist Recipes -->
+    <div class="recipe-grid">
+
+        <th:block th:each="recipe : ${recipes}"
+                  th:if="${recipe != null}">
+
+            <div class="recipe-card">
+
+                <!-- Remove from Wishlist -->
+                <form th:if="${recipe.id != null}"
+                      th:action="@{/wishlist/remove/{id}(id=${recipe.id})}"
+                      method="post"
+                      class="remove-wishlist-form">
+
+                    <button type="submit"
+                            class="remove-wishlist-btn"
+                            title="Remove from Wishlist"
+                            aria-label="Remove recipe from Wishlist"
+                            onclick="return confirm('Are you sure you want to remove this recipe from your Wishlist?');">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+                </form>
+
+                <!-- Recipe Image -->
+                <div class="recipe-image">
+
+                    <img th:if="${recipe.image != null and !#strings.isEmpty(recipe.image)}"
+                         th:src="@{'/img/' + ${recipe.image}}"
+                         th:alt="${recipe.name}">
+
+                    <img th:unless="${recipe.image != null and !#strings.isEmpty(recipe.image)}"
+                         th:src="@{/img/default-recipe.jpg}"
+                         alt="Recipe Image">
+
+                </div>
+
+                <!-- Recipe Content -->
+                <div class="recipe-content">
+
+                    <span class="recipe-title"
+                          th:text="${recipe.title}">
+                        Recipe Category
+                    </span>
+
+                    <h2 th:text="${recipe.name}">
+                        Recipe Name
+                    </h2>
+
+                    <p class="description"
+                       th:text="${recipe.description}">
+                        Recipe description
+                    </p>
+
+                    <!-- Recipe Information -->
+                    <div class="recipe-info">
+
+                        <span>
+                            <i class="fa-solid fa-users"></i>
+                            <b th:text="${recipe.servings}">2</b>
+                            Servings
+                        </span>
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            <b th:text="${recipe.cookTime}">15</b>
+                            min
+                        </span>
+
+                        <!-- Like Button -->
+                        <button class="like-btn"
+                                th:data-id="${recipe.id}"
+                                type="button">
+
+                            <span class="heart">❤️</span>
+
+                            <b class="like-count"
+                               th:id="'like-count-' + ${recipe.id}"
+                               th:text="${recipe.likes != null ? recipe.likes : 0}">0</b>
+
+                            <span>Likes</span>
+
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Recipe Actions -->
+                <div class="recipe-action">
+
+                    <a class="view-recipe-btn"
+                       th:href="@{/recipe/{id}(id=${recipe.id})}">
+
+                        <i class="fa-solid fa-book-open"></i>
+                        &nbsp; View Recipe
+
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- End recipe-card -->
+
+        </th:block>
+
+    </div>
+    <!-- End recipe-grid -->
+
+    <!-- Empty Wishlist -->
+    <div class="no-recipes"
+         th:if="${#lists.isEmpty(recipes)}">
+
+        <div class="empty-icon">❤️</div>
+
+        <h3>Your Wishlist is Empty!</h3>
+
+        <p>
+            Save your favorite recipes and they will appear here.
+        </p>
+
+        <a class="back-btn" th:href="@{/front-page}">
+            <i class="fa-solid fa-compass"></i>
+            Explore Recipes
+        </a>
+
+    </div>
+
+</div>
+<!-- End container -->
+
+<!-- Like Button JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.querySelectorAll(".like-btn").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const recipeId = this.getAttribute("data-id");
+                const likeButton = this;
+
+                fetch("/recipe/" + recipeId + "/like", {
+                    method: "POST"
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Like failed");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const count = likeButton.querySelector(".like-count");
+                        count.textContent = data.likes;
+                        likeButton.classList.add("liked");
+                        likeButton.querySelector(".heart").textContent = "❤️";
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("Unable to like recipe.");
+                    });
+
+            });
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

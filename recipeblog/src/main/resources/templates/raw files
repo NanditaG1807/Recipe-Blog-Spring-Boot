@@ -1,0 +1,83 @@
+https://www.youtube.com/watch?v=zuZK6I1rHbk
+
+font-family: "Playfair Display", serif;
+
+user - root
+password - Nandita@18
+
+
+iframe me recipe change ho
+
+
+validation on form
+responsive
+drop down state - city
+link footer
+
+1. index.html -> (entry point) run RecipeApplication then go to crome localhost:8080 -> login button click
+2. index.css
+3. LoginController.java -> control login(index.html, login.html, register.html, forgot.html) button
+4. script.js (is database valid data? or not if not show error in dialog box)
+5. entity class -> get all info about admin or user (Role.java, User.java)
+6. DatabaseInitializer.java ( Email    : admin@gmail.com
+                              Password : admin123
+                              Role     : ADMIN)
+7. SecurityConfig.java (permission)
+8. UserRepository.java (login करताना email वरून user शोधण्यासाठी हा वापरला जातो).
+9. login.html -> enter email pass as per admin and user they can redirect page
+10.script.js
+11. login.css
+12. Register.html -> if user not register
+13. Register.css
+14. forgot.html -> forgot password
+15. forgot.css
+16.front-page.html
+
+
+
+    private final RecipeRepository recipeRepository;
+
+    public RecipeController(RecipeRepository recipeRepository) {
+        this.recipeRepository = recipeRepository;
+    }
+    @GetMapping("/front-page")
+        public String frontPage(Model model) {
+
+            model.addAttribute(
+                    "recipes",
+                    recipeRepository.findAll()
+            );
+
+            return "front_page";
+        }
+17. recipe.css
+18. img
+
+22. admin.html
+23. recipe.java in entity
+24. RecipeRepository.java in repository folder
+25. AdminController.java
+26. add-feactured.HTML
+27. edit-feactured.HTML
+28. WebConfig.java - admin image
+29.add-small-card.html
+30. edit-small-card.html
+31. user-info.html/ admin-info role logout button
+32. Category.java
+33. CategoryRepository.java
+34. add-category.html
+35. edit-category
+36. wishlist.html
+37.wishlist.java
+38.WishlistRapository.java
+39.WishlistService.java
+40. wishlistcontroller.java
+41. static - recipe-pdf.html
+42. js - recipe-pdf.js
+43. service - RecipePdfService.java
+44. controller - RecipePdfController
+45. add-recipe.html
+46. edit-recipe.html
+
+
+

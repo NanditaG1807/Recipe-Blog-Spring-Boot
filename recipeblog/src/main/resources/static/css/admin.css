@@ -1,0 +1,1306 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    --main-color: #85b72c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: linear-gradient(
+            135deg,
+            #f4faf6 0%,
+            #e8f3ec 100%
+    );
+
+    color: #26352b;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+    max-width: 1250px;
+    margin: 45px auto !important;
+    padding: 0 20px;
+
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.d-flex.justify-content-between {
+    background: #ffffff;
+
+    padding: 22px 25px;
+
+    border-radius: 16px;
+
+    border: 1px solid #dce9df;
+
+    box-shadow:
+            0 8px 25px rgba(40, 90, 55, 0.10);
+
+    margin-bottom: 35px !important;
+}
+
+
+/* =====================================================
+   MAIN HEADING
+===================================================== */
+
+h2 {
+    margin: 0 !important;
+
+    color: black;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =====================================================
+   ADMIN BUTTON AREA
+===================================================== */
+
+.admin-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+}
+
+
+/* =====================================================
+   COMMON BUTTON
+===================================================== */
+
+.btn {
+    border-radius: 8px !important;
+
+    font-weight: 600 !important;
+
+    transition: all 0.25s ease !important;
+}
+
+
+/* =====================================================
+   SUCCESS BUTTON
+===================================================== */
+
+.btn-success {
+    background: #85b72c !important;
+
+    border: none !important;
+
+    color: #ffffff !important;
+
+    padding: 10px 18px !important;
+}
+
+.btn-success:hover {
+    background: #3F6212 !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+            0 6px 16px rgba(61, 146, 93, 0.25);
+}
+
+
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
+
+.btn-primary {
+    background:  #85b72c !important;
+
+    border: none !important;
+
+    color: white !important;
+
+    padding: 9px 18px !important;
+}
+
+.btn-primary:hover {
+    background: #3F6212 !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+            0 6px 15px rgba(36, 97, 59, 0.25);
+}
+
+
+/* =====================================================
+   INFO BUTTON
+===================================================== */
+
+
+
+
+/* =====================================================
+   RECIPE SECTION CARD
+===================================================== */
+
+.card {
+    border: none !important;
+
+    border-radius: 16px !important;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    box-shadow:
+            0 8px 28px rgba(40, 90, 55, 0.10);
+
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    box-shadow:
+            0 12px 35px rgba(40, 90, 55, 0.14);
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.card-header {
+    border: none !important;
+
+    padding: 18px 22px !important;
+}
+
+
+/* Featured header */
+
+.card-header.bg-primary {
+    background: linear-gradient(
+            135deg,
+            #85b72c,
+            #3F6212
+    ) !important;
+}
+
+
+/* Small card header */
+
+.card-header.bg-success {
+    background: linear-gradient(
+            135deg,
+            #85b72c,
+            #3F6212
+    ) !important;
+}
+
+
+.card-header h4 {
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =====================================================
+   CARD BODY
+===================================================== */
+
+.card-body {
+    padding: 0 !important;
+
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   TABLE WRAPPER
+===================================================== */
+
+.card-body {
+    overflow-x: auto;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table {
+    width: 100%;
+
+    margin: 0 !important;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+
+.table thead th {
+    background: #26352b !important;
+
+    color: #ffffff !important;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    padding: 14px 12px !important;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border: none !important;
+}
+
+
+/* =====================================================
+   TABLE BODY
+===================================================== */
+
+.table tbody td {
+    text-align: center;
+
+    vertical-align: middle;
+
+    padding: 13px 10px !important;
+
+    font-size: 14px;
+
+    color: #37483d;
+
+    border-color: #e5ece7 !important;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   TABLE ROW
+===================================================== */
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f8f3 !important;
+}
+
+
+/* =====================================================
+   FIRST COLUMN
+===================================================== */
+
+.table tbody td:first-child {
+    font-weight: 700;
+
+    color: #24613b;
+}
+
+
+/* =====================================================
+   IMAGE CELL
+===================================================== */
+
+.image-cell {
+    text-align: center;
+    vertical-align: middle;
+    min-width: 120px;
+}
+.category-image {
+    display: block;
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* =====================================================
+   RECIPE IMAGE
+===================================================== */
+
+.recipe-image {
+    width: 85px;
+
+    height: 65px;
+
+    object-fit: cover;
+
+    border-radius: 9px;
+
+    border: 2px solid #dce9df;
+
+    display: block;
+
+    margin: auto;
+
+    transition: all 0.25s ease;
+}
+
+.recipe-image:hover {
+    transform: scale(1.08);
+
+    border-color: #3d925d;
+
+    box-shadow:
+            0 5px 15px rgba(61, 146, 93, 0.22);
+}
+
+
+/* =====================================================
+   NO IMAGE
+===================================================== */
+
+.image-cell span {
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.table tbody td:nth-child(3) {
+    font-weight: 600;
+
+    color: #26352b;
+
+    max-width: 200px;
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+.table tbody td:nth-child(5) {
+    color: #3d925d;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   LIKES
+===================================================== */
+
+.table tbody td:nth-child(8) {
+    font-weight: 700;
+
+    color: #d9534f;
+}
+
+
+/* =====================================================
+   ACTION COLUMN
+===================================================== */
+
+.table tbody td:last-child {
+    white-space: nowrap;
+
+    min-width: 150px;
+}
+
+
+/* =====================================================
+   EDIT BUTTON
+===================================================== */
+
+.btn-warning {
+    background: #f4b942 !important;
+
+    border: none !important;
+
+    color: #26352b !important;
+
+    padding: 6px 12px !important;
+
+    border-radius: 6px !important;
+
+    font-size: 13px !important;
+
+    margin-right: 4px;
+
+    font-weight: 600 !important;
+}
+
+.btn-warning:hover {
+    background: #dfa52f !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+            0 4px 10px rgba(244, 185, 66, 0.25);
+}
+
+
+/* =====================================================
+   DELETE BUTTON
+===================================================== */
+
+.btn-danger {
+    background: #dc3545 !important;
+
+    border: none !important;
+
+    padding: 6px 12px !important;
+
+    border-radius: 6px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+}
+
+.btn-danger:hover {
+    background: #b52a37 !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+            0 4px 10px rgba(220, 53, 69, 0.25);
+}
+
+
+/* =====================================================
+   NO DATA MESSAGE
+===================================================== */
+
+.table tbody tr td.text-muted {
+    padding: 35px !important;
+
+    color: #89968e !important;
+
+    font-style: italic;
+
+    background: #fafcfb;
+}
+
+
+/* =====================================================
+   BOTTOM BUTTONS
+===================================================== */
+
+.mb-5:last-child {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   FORM STYLING
+   (For Add Recipe / Edit Recipe pages)
+===================================================== */
+
+form {
+    background: #ffffff;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    border: 1px solid #dce9df;
+
+    box-shadow:
+            0 10px 30px rgba(40, 90, 55, 0.12);
+}
+
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+label {
+    display: block;
+
+    color: #315540;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.form-control {
+    width: 100%;
+
+    border: 1px solid #d3dfd7 !important;
+
+    border-radius: 9px !important;
+
+    padding: 11px 14px !important;
+
+    background: #fbfdfb !important;
+
+    font-size: 15px;
+
+    transition: all 0.25s ease;
+}
+
+.form-control:focus {
+    border-color: #3d925d !important;
+
+    background: #ffffff !important;
+
+    outline: none;
+
+    box-shadow:
+            0 0 0 4px rgba(61, 146, 93, 0.12) !important;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea.form-control {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+/* =====================================================
+   FILE INPUT
+===================================================== */
+
+input[type="file"] {
+    padding: 8px !important;
+
+    cursor: pointer;
+
+    background: #f8fbf9 !important;
+}
+
+input[type="file"]::file-selector-button {
+    background: #3d925d;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 8px 15px;
+
+    margin-right: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #2d7147;
+}
+
+
+#categorySortable tr[data-category-id] {
+    cursor: grab;
+}
+
+#categorySortable tr[data-category-id]:active {
+    cursor: grabbing;
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+    background: #e8f5d0;
+}
+
+.sortable-chosen {
+    background: #f3f8e9;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .container {
+        margin: 20px auto !important;
+
+        padding: 0 12px;
+    }
+
+
+    /* Header */
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+
+        align-items: stretch !important;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+
+    h2 {
+        font-size: 25px;
+    }
+
+
+    /* Buttons */
+
+    .admin-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .admin-buttons .btn {
+        width: 100%;
+    }
+
+
+    /* Section */
+
+    .card {
+        border-radius: 12px !important;
+    }
+
+
+    .card-header {
+        text-align: center;
+
+        padding: 15px !important;
+    }
+
+
+    .card-header h4 {
+        font-size: 18px;
+    }
+
+
+    /* Horizontal table */
+
+    .card-body {
+        overflow-x: auto;
+    }
+
+    .table {
+        min-width: 1050px;
+    }
+
+
+    /* Images */
+
+    .recipe-image {
+        width: 75px;
+
+        height: 60px;
+    }
+
+
+    /* Bottom buttons */
+
+    .mb-5:last-child {
+        flex-direction: column;
+    }
+
+    .mb-5:last-child .btn {
+        width: 100%;
+    }
+
+
+    /* Forms */
+
+    form {
+        padding: 25px 20px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 0 10px;
+    }
+
+
+    h2 {
+        font-size: 22px;
+    }
+
+
+    .card-header h4 {
+        font-size: 17px;
+    }
+
+
+    .table {
+        min-width: 1000px;
+    }
+
+
+    form {
+        padding: 20px 15px;
+    }
+
+
+
+}
+
+
+.mainnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+min-height: 85px;
+    height: 35px;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+}
+.mainnav .container {
+    width: 100%;
+    max-width: 100%;
+    min-height: 85px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.site-header .mainnav {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.site-header .navbar-container {
+    min-height: 30px !important;
+    height: 1px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.site-header .logo img {
+    max-height: 35px;
+    width: auto;
+    object-fit: contain;
+}
+
+.site-header .logo h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+
+/* =====================================
+   ADMIN PAGE - RECIPE BLOG NAVBAR
+===================================== */
+
+:root {
+    --nav-green: #6f9d20;
+    --nav-green-dark: #3f6212;
+    --nav-text: #1d2228;
+    --nav-border: #e5e7eb;
+}
+
+/* Header */
+.site-header {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    background: #fff;
+}
+
+/* Main Navbar Container */
+.mainnav {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.mainnav .navbar-container {
+    width: 100%;
+    max-width: 1600px;
+    min-height: 85px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+/* Logo */
+.mainnav .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.mainnav .logo img {
+    display: block;
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.mainnav .logo h1 {
+    margin: 0;
+    color: var(--nav-text);
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.mainnav .logo:hover h1 {
+    color: var(--nav-green);
+}
+
+/* Navigation */
+.mainnav .navbar-navigation {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.mainnav .navlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+}
+
+.mainnav .navlist li {
+    list-style: none;
+}
+
+.mainnav .navlist li a {
+    display: inline-block;
+    padding: 8px 0;
+    color: var(--nav-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mainnav .navlist li a:hover,
+.mainnav .navlist li a:focus-visible {
+    color: var(--nav-green);
+}
+
+/* Search Form */
+.mainnav .navbar-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 210px;
+    width: auto;
+    max-width: 280px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.mainnav .navbar-search input[type="search"] {
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+    padding: 8px 10px;
+    color: #333;
+    background: #f9fafb;
+    border: 1px solid var(--nav-border);
+    border-radius: 7px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.mainnav .navbar-search input[type="search"]:focus {
+    border-color: var(--nav-green);
+    box-shadow: 0 0 0 3px rgba(133, 183, 44, 0.13);
+}
+
+.mainnav .navbar-search button {
+    height: 38px;
+    padding: 0 12px;
+    flex-shrink: 0;
+    color: #fff;
+    background: var(--nav-green);
+    border: none;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mainnav .navbar-search button:hover {
+    background: var(--nav-green-dark);
+}
+
+/* Profile, Wishlist and PDF */
+.mainnav .navbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.mainnav .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.mainnav .profile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.mainnav .profile-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--nav-green);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.mainnav .profile-circle:hover {
+    background: var(--nav-green-dark);
+}
+
+.mainnav .wishlist-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 0;
+    color: var(--nav-text);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.mainnav .wishlist-link span {
+    color: #e53935;
+    font-size: 18px;
+}
+
+.mainnav .wishlist-link:hover {
+    color: var(--nav-green);
+}
+
+.mainnav .pdf-download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 10px;
+    border-radius: 7px;
+    background: #e7f5eb;
+    color: var(--nav-green);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mainnav .pdf-download-link i {
+    font-size: 16px;
+}
+
+.mainnav .pdf-download-link:hover {
+    background: var(--nav-green);
+    color: #fff;
+}
+
+/* Hamburger - hidden on desktop */
+.mainnav .mobile-menu-toggle {
+    display: none;
+}
+
+/* Tablet */
+@media screen and (max-width: 1100px) {
+    .mainnav .navbar-container {
+        gap: 12px;
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .mainnav .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 18px;
+    }
+
+    .mainnav .navlist {
+        gap: 10px;
+    }
+
+    .mainnav .navlist li a {
+        font-size: 12px;
+    }
+
+    .mainnav .navbar-actions {
+        gap: 8px;
+    }
+}
+
+/* Mobile Navbar */
+@media screen and (max-width: 768px) {
+    .mainnav .navbar-container {
+        min-height: 0;
+        padding: 10px 14px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .mainnav .logo {
+        order: 1;
+        gap: 7px;
+    }
+
+    .mainnav .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 17px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Hamburger */
+    .mainnav .mobile-menu-toggle {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 40px;
+        height: 36px;
+        min-width: 40px;
+        padding: 7px;
+        margin-left: auto;
+        flex-shrink: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .mainnav .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 3px;
+        flex: 0 0 3px;
+        border-radius: 3px;
+        background: var(--nav-green);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Hamburger to X */
+    .mainnav .mobile-menu-toggle.active span:first-child {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .mainnav .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mainnav .mobile-menu-toggle.active span:last-child {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Navigation */
+    .mainnav .navbar-navigation {
+        order: 3;
+        display: block;
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .mainnav .navbar-navigation #mobile-navlist {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin: 0;
+        padding: 6px 0;
+        gap: 0;
+        background: #fff;
+    }
+
+    .mainnav .navbar-navigation #mobile-navlist.active {
+        display: flex;
+    }
+
+    .mainnav #mobile-navlist li {
+        display: block;
+        width: 100%;
+    }
+
+    .mainnav #mobile-navlist li a {
+        display: block;
+        width: 100%;
+        padding: 12px 10px;
+        color: var(--nav-text);
+        font-size: 14px;
+    }
+
+    .mainnav #mobile-navlist li a:hover {
+        color: var(--nav-green-dark);
+        background: #f1f7e8;
+    }
+
+    /* Mobile Search */
+    .mainnav .navbar-search {
+        order: 4;
+        display: flex;
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .mainnav .navbar-search input[type="search"] {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        font-size: 14px;
+    }
+
+    .mainnav .navbar-search button {
+        padding: 0 16px;
+    }
+
+    /* User Actions */
+    .mainnav .navbar-actions {
+        order: 5;
+        display: flex;
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        padding-top: 2px;
+    }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 380px) {
+    .mainnav .navbar-container {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .mainnav .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .mainnav .logo h1 {
+        font-size: 15px;
+    }
+
+    .mainnav .mobile-menu-toggle {
+        width: 36px;
+        min-width: 36px;
+        height: 34px;
+    }
+
+    .mainnav .navbar-search button {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    .mainnav .navbar-actions {
+        gap: 9px;
+    }
+}

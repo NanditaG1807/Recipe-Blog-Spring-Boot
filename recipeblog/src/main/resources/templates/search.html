@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Recipes | Recipe Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/feactured.css}">
+    <link rel="stylesheet" th:href="@{/css/recipe.css}">
+
+
+
+
+</head>
+<style>
+body{
+    background-color: white;
+}
+
+    html,
+    body,
+    body *,
+    input,
+    select,
+    button,
+    textarea {
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+</style>
+
+<body >
+<header class="site-header" >
+    <div class="mainnav">
+        <div class="container navbar-container">
+
+            <!-- Website Logo -->
+            <a class="logo" th:href="@{/front-page}"
+               aria-label="Recipe Blog Home">
+                <img th:src="@{/img/OIP.jpg}"
+                     alt="Recipe Blog Logo">
+                <h1>Recipe <br> Blog</h1>
+            </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-menu-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-controls="mobile-navlist"
+                    aria-expanded="false"
+                    onclick="
+                        const menu = document.getElementById('mobile-navlist');
+                        const isOpen = menu.classList.toggle('active');
+                        this.classList.toggle('active', isOpen);
+                        this.setAttribute('aria-expanded', String(isOpen));
+                    ">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="navbar-navigation"
+                 id="site-navigation"
+                 aria-label="Main navigation">
+
+                <ul class="navlist" id="mobile-navlist">
+                    <li>
+                        <a th:href="@{/front-page}">Home</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/categories}">Categories</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/review}">Review</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/about-us}">About</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/contact-us}">Contact</a>
+                    </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/admin}">+Recipe</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/search}">Find Recipes</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Search Form -->
+            <form class="recipe-search-form navbar-search"
+                  method="get"
+                  th:action="@{/recipes/filter}">
+
+                <input type="search"
+                       name="search"
+                       placeholder="Search recipes..."
+                       th:value="${search}"
+                       aria-label="Search recipes by name"
+                       required>
+
+                <button type="submit">Search</button>
+            </form>
+
+            <!-- User Actions -->
+            <div class="navbar-actions">
+
+                <!-- Authenticated User Profile -->
+                <div class="user-profile"
+                     sec:authorize="isAuthenticated()">
+                    <a class="profile-link"
+                       th:href="@{/user-info}"
+                       aria-label="My Profile"
+                       title="My Profile">
+
+                        <div class="profile-circle"
+                             th:text="${#strings.substring(#authentication.name, 0, 1).toUpperCase()}">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Authenticated User Wishlist -->
+                <a class="wishlist-link"
+                   th:href="@{/wishlist}"
+                   sec:authorize="isAuthenticated()"
+                   title="My Wishlist">
+                    <span aria-hidden="true">♥</span>
+                    Wishlist
+                </a>
+
+                <!-- Recipe PDF -->
+                <a class="pdf-download-link"
+                   th:href="@{/recipes-pdf.html}"
+                   aria-label="View and Download Recipe PDF"
+                   title="View and Download Recipe PDF">
+                    <i class="fa-solid fa-file-pdf"
+                       aria-hidden="true"></i>
+                    <span>Recipe PDF</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</header>
+<header class="search-header">
+    <h1>🍲 Find Your Favourite Recipe</h1>
+    <p>Quick, delicious recipes for every mood</p>
+</header>
+
+<main class="filter-container">
+
+    <!-- SEARCH AND FILTER FORM -->
+    <form class="filter-box"
+          th:action="@{/recipes/filter}"
+          method="get">
+
+        <input
+                class="search-input"
+                type="search"
+                name="search"
+                placeholder="Search recipes by name..."
+                th:value="${search}">
+
+        <div class="filter-row">
+
+            <div class="filter-group">
+                <label for="time">Cooking Time</label>
+
+                <select id="time" name="time">
+                    <option value="">All Times</option>
+
+                    <option value="15" th:selected="${selectedTime == 15}">
+                        Within 15 Minutes
+                    </option>
+
+                    <option value="30" th:selected="${selectedTime == 30}">
+                        Within 30 Minutes
+                    </option>
+
+                    <option value="60" th:selected="${selectedTime == 60}">
+                        Within 60 Minutes
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="type">Food Preference</label>
+
+                <select id="type" name="type">
+                    <option value="">All Recipes</option>
+
+                    <option value="VEG"
+                            th:selected="${selectedType == 'VEG'}">
+                        🥦 Vegetarian
+                    </option>
+
+                    <option value="NON_VEG"
+                            th:selected="${selectedType == 'NON_VEG'}">
+                        🍗 Non-Vegetarian
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="btn" type="submit">
+                Search Recipes
+            </button>
+
+            <a class="btn btn-reset"
+               th:href="@{/recipes/filter}">
+                Reset Filters
+            </a>
+
+        </div>
+
+    </form>
+
+    <!-- RESULT COUNT -->
+    <p class="result-count">
+        Found
+        <strong th:text="${recipes.size()}">0</strong>
+        recipes
+    </p>
+
+    <!-- RECIPE GRID -->
+    <div class="recipe-grid"
+         th:if="${!recipes.isEmpty()}">
+
+        <article class="recipe-card"
+                 th:each="recipe : ${recipes}">
+
+            <div class="recipe-image">
+
+                <img
+                        th:src="@{'/img/' + ${recipe.image}}"
+                        th:alt="${recipe.title != null ? recipe.title : recipe.name}"
+                        onerror="this.onerror=null;this.src='/img/default-recipe.jpg';">
+
+                <span class="category-badge"
+                      th:each="cat : ${recipe.categories}"
+                      th:text="${cat.name}">
+                </span>
+
+            </div>
+
+            <div class="recipe-content">
+
+                <div class="recipe-title"
+                     th:text="${recipe.title}">
+                </div>
+
+                <h2 th:text="${recipe.name}">
+                    Recipe Name
+                </h2>
+
+                <p class="description"
+                   th:text="${recipe.description}">
+                    Recipe description
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        ⏱
+                        <b th:text="${recipe.cookTime}">30</b>
+                        min
+                    </span>
+
+                    <span class="tag"
+                          th:classappend="${recipe.foodType != null and #strings.equalsIgnoreCase(recipe.foodType, 'NON_VEG')} ? ' nonveg' : ''"
+                          th:text="${recipe.foodType}">
+                        VEG
+                    </span>
+
+                    <span class="tag">
+                        👥
+                        <b th:text="${recipe.servings}">2</b>
+                        servings
+                    </span>
+
+                    <span class="tag">
+                        ❤️
+                        <b th:text="${recipe.likes}">0</b>
+                    </span>
+
+                </div>
+
+                <a class="view-btn"
+                   th:href="@{/recipe/{id}(id=${recipe.id})}">
+                    View Recipe →
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="empty"
+         th:if="${recipes.isEmpty()}">
+
+        <div class="empty-icon">🍽️</div>
+
+        <h2>No Recipes Found!</h2>
+
+        <p>
+            Try changing your search, cooking time or food preference.
+        </p>
+
+        <a class="btn"
+           th:href="@{/admin/recipes/filter}">
+            View All Recipes
+        </a>
+
+    </div>
+
+    <!-- BACK TO HOME -->
+    <div class="home-link">
+        <a class="back-btn" th:href="@{/front-page}">
+            ← Back to Home
+        </a>
+    </div>
+    <div th:replace="~{chatbot :: widget}"></div>
+</main>
+
+</body>
+</html>
