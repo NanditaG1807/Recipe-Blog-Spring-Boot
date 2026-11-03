@@ -1,3 +1,4 @@
+![logo](https://github.com/NanditaG1807/NanditaG1807/blob/main/Background%20template.jpg)
 Hi 👋, I'm Nandita Goje
 💻 Full Stack Java Developer | Passionate Programmer | India 🇮🇳
 
