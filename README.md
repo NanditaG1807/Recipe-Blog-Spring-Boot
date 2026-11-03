@@ -41,13 +41,6 @@
 
 
 
-<h2 align="center">💻 Most Used Languages</h2>
-
-<p align="center">
-<img src="https://github-stats-extended.vercel.app/api/top-langs/?username=nanditag1807&layout=compact&theme=tokyonight&hide=php" alt="Top Languages"/>
-</p>
-
-
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=nanditag1807&theme=tokyonight" />
 </p>
