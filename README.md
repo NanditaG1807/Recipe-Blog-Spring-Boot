@@ -40,10 +40,11 @@ I'm passionate about building web applications and learning new technologies. I 
   <img src="https://github-stats-extended.vercel.app/api?username=nanditag1807&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
 </p>
 
+
 <h2 align="center">💻 Most Used Languages</h2>
 
 <p align="center">
-  <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=nanditag1807&layout=compact&theme=tokyonight" />
+<img src="https://github-stats-extended.vercel.app/api/top-langs/?username=nanditag1807&layout=compact&theme=tokyonight&hide=php" alt="Top Languages"/>
 </p>
 
 
