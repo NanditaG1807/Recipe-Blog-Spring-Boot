@@ -64,9 +64,6 @@ Open the Recipe Blog project in IntelliJ IDEA.
 Configure the database connection in application.properties.
 Make sure the MySQL database is created.
 Run the Spring Boot main application class.
-Open your browser and visit:
-
-http://localhost:8080/
 
 🤝 Connect with Me
 
