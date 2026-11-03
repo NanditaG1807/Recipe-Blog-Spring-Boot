@@ -1,18 +1,25 @@
+
 ![logo](https://github.com/NanditaG1807/NanditaG1807/blob/main/Background%20template.jpg)
-Hi 👋, I'm Nandita Goje
-💻 Full Stack Java Developer | Passionate Programmer | India 🇮🇳
+<h1 align="center">Hi 👋, I'm Nandita Goje</h1>
+<h3 align="center">A passionate full Stack developer from India</h3>
+<img align="right" alt="coding" width="200" src="https://i.pinimg.com/originals/e7/26/c7/e726c74ac081eed50feee1433d12c998.gif">
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=nanditag1807&label=Profile%20views&color=0e75b6&style=flat" alt="nanditag1807" /> </p>
 
-<img align="right" alt="Coding" width="350" src="https://i.pinimg.com/originals/e7/26/c7/e726c74ac081eed50feee1433d12c998.gif">
+- 🔭 I’m currently working on **Recipe Blog**
 
-I'm passionate about building web applications and learning new technologies. I enjoy turning ideas into real-world projects through code.
+- 🌱 I’m currently learning **Full Stack Java**
 
-🔭 Currently working on Recipe Blog
-🌱 Currently learning Full Stack Java
-👯 Interested in collaborating on Java Projects
-💬 Ask me about Java, React, Spring, Bootstrap, JavaScript
-📫 Reach me at **nanditagoje@gmail.com**
-⚡ Fun fact: I love creating Recipe Blogs!
-🤝 Connect with Me
+- 👯 I’m looking to collaborate on **Java Project**
+
+- 🤝 I’m looking for help with **Java**
+
+- 💬 Ask me about **Java, React, Spring, Bootstrap, JavaScript**
+
+- 📫 How to reach me **nanditagoje@gmail.com**
+
+- ⚡ Fun fact **I create Recipe blog**
+
+<h3 align="left">Connect with me:</h3>
 
 <p align="left">
 <a href="https://linkedin.com/in/nandita-goje" target="_blank">
